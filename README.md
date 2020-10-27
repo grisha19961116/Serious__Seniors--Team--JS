@@ -1,25 +1,12 @@
-![Banner](./banner.png)
-
-# Gulp Starter Kit &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-
-Базовая Gulp-сборка для вёрстки.
-
-- Собирает и оптимизирует `html`, `sass`, `js`, изображения и шрифты
-- Использует `gulp-rigger` для работы с html-chunks
-- Включает файлы настроек различных линтеров
-- Все ошибки логируются в консоль
-- Добавляет вендорные префиксы
-- Совмещает и оптимизирует медиазапросы
-- Есть режим разработки и сборки в продакшн
-- Автоматический деплой на GitHub Pages
+# Webpack starter kit &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 
 ## Developing
 
 ### Prerequisites
 
 Для корректной работы SASS-компилятора и других инструментов, необходимо один
-раз глобально поставить дополнительные пакеты, выполнив в терминале следующие
-команды. Пользователям MacOS ничего делать не нужно.
+раз глобально поставить дополнительные пакеты, выполнив в терминале (с правами
+администратора) следующие команды. Пользователям MacOS ничего делать не нужно.
 
 Пользователям **Windows**.
 
@@ -38,13 +25,13 @@ sudo apt-get install gcc g++ make
 Для быстрого старта необходимо склонировать репозиторий.
 
 ```shell
-git clone https://github.com/luxplanjay/gulp-starter-kit.git
+git clone https://github.com/luxplanjay/webpack-starter-kit.git
 ```
 
 Переименовать папку сборки по имени вашего проекта.
 
 ```shell
-mv gulp-starter-kit имя_проекта
+mv webpack-starter-kit имя_проекта
 ```
 
 Затем перейти в папку проекта.
@@ -73,7 +60,7 @@ npm start
 ```
 
 Во вкладке браузера перейти по адресу
-[http://localhost:1234](http://localhost:1234).
+[http://localhost:4040](http://localhost:4040).
 
 ### Building
 
@@ -85,7 +72,7 @@ npm start
 npm run build
 ```
 
-### Deploying / Publishing
+### Deploying/Publishing
 
 Сборка может автоматически деплоить билд на GitHub Pages удаленного (remote)
 репозитория. Для этого необходимо в файле `package.json` отредактировать поле
@@ -106,26 +93,3 @@ npm run deploy
 `gh-pages` на удаленном (remote) репозитории. Через какое-то время живую
 страницу можно будет посмотреть по адресу указанному в отредактированном
 свойстве `homepage`.
-
-## Configuration
-
-- Все файлы стилей должны лежать в папке `src/sass` и импортироваться в
-  `src/sass/main.scss`
-- Изображения добавляйте в папку `src/images`
-- Локальные шрифты идут в папку `src/fonts`
-
-Пример изображения в HTML, после того как файл `picture.png` был добавлен в
-папку `src/images`.
-
-```html
-<img src="./images/picture.png" />
-```
-
-Пример изображения в CSS, после того как файл `picture.png` был добавлен в папку
-`src/images`.
-
-```css
-.my-class {
-  background-image: url('../images/picture.png');
-}
-```
