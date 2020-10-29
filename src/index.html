@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Serious__Seniors--Team--JS</title>
-</head>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Serious__Seniors--Team--JS</title>
+  </head>
 <body>
-
-
-  <input class="input" type="text" name="query" placeholder="Write movie name and click Enter" />
-
-  <!-- SECTION FILM-DETAILS-PAGE START -->
-
+  <!-- //Header// -->
+  <nav class="navigation__menu">
+    <div class="navigation__left-side">
+      <img class="Logo__img" src="#" alt="Logo">
+      <a class="logo__link" href="#">Filmoteka</a>
+    </div>
+    <div class="navigation__right-side">
+      <a href="#" class="home-link">Home</a>
+      <a href="#" class="library-link">MY LIBRARY</a>
+    </div>
+  </nav>
+  <!-- ///Header// -->
+  <!-- //Main// -->
+  <main class="films__list">
+    <input class="input" type="text" name="query" placeholder="Write movie name and click Enter" />
+    
+      <!-- SECTION FILM-DETAILS-PAGE START -->
   <section class="film-details-page">
-
     <!-- !!!!!!Рендерится с темплейтов, оставил пока, чтоб видно было что верстаю !!!!!!-->
-
     <div class="film-details-page__wrapper container">
-
       <div class="film-details__img-box">
         <img class="film-details__img"
           src="https://i.pinimg.com/originals/76/6c/f7/766cf770ea8dd3529bd8e0c41d6784be.jpg" alt="{{tags}}" />
       </div>
-
       <div class="film-details__wrapper">
-
         <div class="film-details__wrapper-item film-details__wrapper-item--film">
           <h2 class="film-details__title">
             Dambo
             <span class="film-details__year">(2020)</span>
           </h2>
-
           <ul class="film-details__list">
             <li class="film-details__item film-details__item--color">
               <span class="film-details__vote">{{рейтинг}} /</span>
@@ -50,12 +53,10 @@
             </li>
           </ul>
         </div>
-
         <div class="film-details__wrapper-item film-details__wrapper-item--about">
           <h3 class="film-details__title">About</h3>
           <p class="film-details__description">{{описание}}</p>
         </div>
-
         <div class="film-details__wrapper-item film-details__wrapper-item--buttons">
           <button class="btn__film-details btn-watched js-btn-watched">Add to watched</button>
           <button class="btn__film-details btn-queue js-btn-queue">Add to queue</button>
@@ -63,9 +64,48 @@
       </div>
     </div>
   </section>
-
   <!-- SECTION FILM-DETAIL-PAGE END -->
-
-</body>
-
+    
+    <div class="film-list">
+      <ul>
+        <li class="film__name">Тёмные времена</li>
+        <li class="film__name">Тёмные времена</li>
+        <li class="film__name">Тёмные времена</li>
+        <li class="film__name">Тёмные времена</li>
+        <li class="film__name">Тёмные времена</li>
+        <li class="film__name">Тёмные времена</li>
+      </ul>
+    </div>
+    <div>
+      <button class="button__prev lowest-buttons">Prev</button>
+      <button class="button__page-number lowest-buttons">"Nuber of page"</button>
+      <button class="button__next lowest-buttons">Next</button>
+    </div>
+    <!-- Начало раздела labraryPage -->
+<section class="myFilmLibraryPage__section" id="myFilmLibraryPage__section">
+  <div class="library-btns">
+    <button
+      id="js-buttonWatchedFilms"
+      class="btn library__btn library__btn--watch library__btn--active"
+    >
+      Watched
+    </button>
+    <button
+      id="js-buttonQueueFilms"
+      class="btn library__btn library__btn--queue"
+    >
+      Queue
+    </button>
+  </div>
+  <ul class="library-list library__filmList library__list--wached"></ul>
+</section>
+<!-- Конец раздела labraryPage -->
+  </main>
+  <!-- //Main// -->
+  <!-- //Footer// -->
+  <footer class="footer">
+    <p class="creators">Made by Serious__Seniors--Team</p>
+  </footer>
+  <!-- //Footer// -->
+  </body>
 </html>
