@@ -21,7 +21,6 @@
   <!-- ///Header// -->
   <!-- //Main// -->
   <main class="films__list">
-
     <input class="input" type="text" name="query" placeholder="Write movie name and click Enter" />
     <div class="film-list">
       <ul>
@@ -40,10 +39,31 @@
     </div>
   </main>
   <!-- //Main// -->
+  
   <!-- //Footer// -->
   <footer class="footer">
     <p class="creators">Made by Serious__Seniors--Team</p>
   </footer>
   <!-- //Footer// -->
-</body>
+
+<!-- Начало раздела labraryPage -->
+<section class="myFilmLibraryPage__section" id="myFilmLibraryPage__section">
+  <div class="library-btns">
+    <button
+      id="js-buttonWatchedFilms"
+      class="btn library__btn library__btn--watch library__btn--active"
+    >
+      Watched
+    </button>
+    <button
+      id="js-buttonQueueFilms"
+      class="btn library__btn library__btn--queue"
+    >
+      Queue
+    </button>
+  </div>
+  <ul class="library-list library__filmList library__list--wached"></ul>
+</section>
+<!-- Конец раздела labraryPage -->
+  </body>
 </html>
