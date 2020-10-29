@@ -19,6 +19,26 @@
     </div>
   </nav>
   <!-- ///Header// -->
+    <!-- Начало раздела labraryPage -->
+    <section class="myFilmLibraryPage__section" id="myFilmLibraryPage__section">
+      <div class="library-btns">
+        <button
+          id="js-buttonWatchedFilms"
+          class="btn library__btn library__btn--watch library__btn--active"
+        >
+          Watched
+        </button>
+        <button
+          id="js-buttonQueueFilms"
+          class="btn library__btn library__btn--queue"
+        >
+          Queue
+        </button>
+      </div>
+      <ul class="library-list library__filmList library__list--wached"></ul>
+    </section>
+    <!-- Конец раздела labraryPage -->
+
   <!-- //Main// -->
   <main class="films__list">
     <input class="input" type="text" name="query" placeholder="Write movie name and click Enter" />
@@ -81,25 +101,7 @@
       <button class="button__page-number lowest-buttons">"Nuber of page"</button>
       <button class="button__next lowest-buttons">Next</button>
     </div>
-    <!-- Начало раздела labraryPage -->
-<section class="myFilmLibraryPage__section" id="myFilmLibraryPage__section">
-  <div class="library-btns">
-    <button
-      id="js-buttonWatchedFilms"
-      class="btn library__btn library__btn--watch library__btn--active"
-    >
-      Watched
-    </button>
-    <button
-      id="js-buttonQueueFilms"
-      class="btn library__btn library__btn--queue"
-    >
-      Queue
-    </button>
-  </div>
-  <ul class="library-list library__filmList library__list--wached"></ul>
-</section>
-<!-- Конец раздела labraryPage -->
+
   </main>
   <!-- //Main// -->
   <!-- //Footer// -->
