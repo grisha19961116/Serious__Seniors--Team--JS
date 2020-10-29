@@ -1,0 +1,46 @@
+{{#each this}}
+
+<div class="contianer">
+
+    <div class="film-details__img">
+        <img src="{{баннер фильма}}" alt="{{tags}}" />
+    </div>
+
+    <div class="film-details__wrapper">
+
+        <div class="film-details__wrapper-item film">
+            <h2 class="film-details__title">
+                {{название фильма}}
+                <span class="film-details__year">{{год выпуска}}</span>
+            </h2>
+
+            <ul class="film-details__list">
+                <li class="film-details__item">
+                    <span class="film-details__vote">{{рейтинг}}/</span>
+                    <span class="film-details__votes">{{количество голосов}}</span>
+                </li>
+                <li class="film-details__item">
+                    <span class="film-details__popularity">{{популярность}}</span>
+                </li>
+                <li class="film-details__item">
+                    <span class="film-details__original-title">{{оригинальное название}}</span>
+                </li>
+                <li class="film-details__item">
+                    <span class="film-details__genre">{{жанр}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="film-details__wrapper-item about">
+            <h3 class="film-details__title">About</h3>
+            <p class="film-details__description">{{описание}}</p>
+        </div>
+
+        <div class="film-details__wrapper-item buttons">
+            <button class="btn__film-details btn-watched js-btn-watched">Add to watched</button>
+            <button class="btn__film-details btn-queue js-btn-queue">Add to queue</button>
+        </div>
+    </div>
+</div>
+
+{{/each}}

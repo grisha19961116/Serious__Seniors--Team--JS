@@ -1,16 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Serious__Seniors--Team--JS</title>
-  </head>
-  <body>
-    
 
-    <input class="input" type="text" name="query" placeholder="Write movie name and click Enter" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Serious__Seniors--Team--JS</title>
+</head>
+
+<body>
 
 
-  </body>
+  <input class="input" type="text" name="query" placeholder="Write movie name and click Enter" />
+
+  <!-- SECTION FILM-DETAILS-PAGE START -->
+
+  <section class="film-details-page">
+
+    <!-- !!!!!!Рендерится с темплейтов, оставил пока, чтоб видно было что верстаю !!!!!!-->
+
+    <div class="film-details-page__wrapper container">
+
+      <div class="film-details__img-box">
+        <img class="film-details__img"
+          src="https://i.pinimg.com/originals/76/6c/f7/766cf770ea8dd3529bd8e0c41d6784be.jpg" alt="{{tags}}" />
+      </div>
+
+      <div class="film-details__wrapper">
+
+        <div class="film-details__wrapper-item film-details__wrapper-item--film">
+          <h2 class="film-details__title">
+            Dambo
+            <span class="film-details__year">(2020)</span>
+          </h2>
+
+          <ul class="film-details__list">
+            <li class="film-details__item film-details__item--color">
+              <span class="film-details__vote">{{рейтинг}} /</span>
+              <span class="film-details__votes">{{количество голосов}}</span>
+            </li>
+            <li class="film-details__item">
+              <span class="film-details__popularity">{{популярность}}</span>
+            </li>
+            <li class="film-details__item film-details__item--color">
+              <span class="film-details__original-title">{{оригинальное название}}</span>
+            </li>
+            <li class="film-details__item">
+              <span class="film-details__genre">{{жанр}}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="film-details__wrapper-item film-details__wrapper-item--about">
+          <h3 class="film-details__title">About</h3>
+          <p class="film-details__description">{{описание}}</p>
+        </div>
+
+        <div class="film-details__wrapper-item film-details__wrapper-item--buttons">
+          <button class="btn__film-details btn-watched js-btn-watched">Add to watched</button>
+          <button class="btn__film-details btn-queue js-btn-queue">Add to queue</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION FILM-DETAIL-PAGE END -->
+
+</body>
+
 </html>
