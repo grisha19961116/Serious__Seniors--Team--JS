@@ -1,32 +1,48 @@
-const homeDom = document.querySelector('.home-link');
-const libraryDom = document.querySelector('.library-link');
-
-const filmLibraryPageSection = document.querySelector('.myFilmLibraryPage__section');
-// const secondSection = document.querySelector('');
-// const thirdSection = document.querySelector('');
-
-const buttonShowLIstQueue = document.querySelector('.library__btn--queue');
-const buttonFilmsWatched = document.querySelector('.library__btn--watch');
-
+import refsNavigation from '../refsNavigation'
+console.log(refsNavigation.homeDom);
+console.log(refsNavigation.libraryDom);
+console.log(refsNavigation.filmDetailPageSection);
+console.log(refsNavigation.homePageSection);
+console.log(refsNavigation.filmLibraryPageSection);
+console.log(refsNavigation.buttonShowLIstQueue);
+console.log(refsNavigation.buttonFilmsWatched);
+console.log(refsNavigation.buttonPrev);
+console.log(refsNavigation.buttonNext);
 // const buttonAddFilm = document.querySelector('кнопка добавления фильмов в очередь просмотра');
 // const buttonDeleteFilm = document.querySelector('кнопка удаления фильмов з очереди просмотра');
 // const buttonAddFilmQueueToWatched = document.querySelector('кнопка добавления фильмов  из просмотренных со страницы detailsPage');
 // const buttonDeleteFilmQueueFromWatched = document.querySelector('кнопка удаления фильмов  из просмотренных со страницы detailsPage');
-const buttonPrev = document.querySelector('.button__prev');
-const buttonNext = document.querySelector('.button__next');
-let selectFilm = true;
+let selectFilm = {some:`dataConnected with local storage`};
 const activeHomePage = () =>{
     console.log(`hello from navigation.js of activeHomePage function`);
-//     показывает домашнюю страницу linkHomeDom робимо з нею
 
-//     и прячет остальные filmLibraryPageSection secondSection thirdSection добавляючи класс через класліст адд, а также
-//    вешает слушателей на кнопку вперед buttonNext и назад buttonPrev из плагинации и удаляет ненужных всех слушателей
-//    (таких 4 во всем проекте не нужных на этой странице);
+    refsNavigation.homeDom.addEventListener('click',((even) => {
+
+        refsNavigation.filmDetailPageSection.classList.add('hidden');
+        refsNavigation.filmLibraryPageSection.classList.add('hidden');
+
+        refsNavigation.buttonNext.addEventListener('click',(() => {
+
+        }));
+
+        refsNavigation.buttonPrev.addEventListener('click',(() => {
+
+        }));
+
+        console.log(even)
+    }));
+//  и удаляет ненужных всех слушателей  (таких 4 во всем проекте не нужных на этой странице);
 }
 activeHomePage();
 const activeLibraryPage = () => {
     console.log(`hello from navigation.js of activeLibraryPage function`);
-//    показывает страницу с библиотекой и прячет остальные, робимо з нею libraryDom
+    refsNavigation.libraryDom.addEventListener('click',((even) => {
+        //    показывает страницу с библиотекой и прячет остальные
+        refsNavigation.filmDetailPageSection.classList.remove('hidden');
+        refsNavigation.filmLibraryPageSection.classList.add('hidden');
+
+    }))
+
 //    запускает функцию отрисовки фильмов из очереди drawQueueFilmList (которую сделает пятый участник) 
 //    и добавляет кнопке списка очереди фильмов эффект выбранной с помощью класса, а также вешает
 //    слушателей на кнопки показа очереди фильмов buttonShowLIstQueue и просмотренных фильмов buttonFilmsWatched и удаляет ненужных всех
