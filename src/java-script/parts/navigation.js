@@ -4,8 +4,10 @@ const libraryDom = document.querySelector('.library-link');
 const filmLibraryPageSection = document.querySelector('.myFilmLibraryPage__section');
 // const secondSection = document.querySelector('');
 // const thirdSection = document.querySelector('');
+
 const buttonShowLIstQueue = document.querySelector('.library__btn--queue');
 const buttonFilmsWatched = document.querySelector('.library__btn--watch');
+
 // const buttonAddFilm = document.querySelector('кнопка добавления фильмов в очередь просмотра');
 // const buttonDeleteFilm = document.querySelector('кнопка удаления фильмов з очереди просмотра');
 // const buttonAddFilmQueueToWatched = document.querySelector('кнопка добавления фильмов  из просмотренных со страницы detailsPage');
@@ -16,6 +18,7 @@ let selectFilm = true;
 const activeHomePage = () =>{
     console.log(`hello from navigation.js of activeHomePage function`);
 //     показывает домашнюю страницу linkHomeDom робимо з нею
+
 //     и прячет остальные filmLibraryPageSection secondSection thirdSection добавляючи класс через класліст адд, а также
 //    вешает слушателей на кнопку вперед buttonNext и назад buttonPrev из плагинации и удаляет ненужных всех слушателей
 //    (таких 4 во всем проекте не нужных на этой странице);
