@@ -1,0 +1,54 @@
+.navigation__menu {
+  font-weight: 600;
+  font-size: 12px;
+  font-family: 'Myriad Pro';
+  color: rgba(55, 44, 72, 0.702);
+  line-height: 1.2;
+  text-align: center;
+  height: 100px;
+  background-color: #77c1bb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+// .link-rapper {
+//   width: 240px;
+// }
+
+.after {
+  display: block;
+  width: 120px;
+}
+
+.after:hover {
+  border-bottom: 3px solid rgba(55, 44, 72, 1);
+  width: 120px;
+  color: rgba(55, 44, 72, 1);
+  transition: 0.5s;
+}
+
+.navigation__left-side {
+  width: 64px;
+  justify-content: space-between;
+}
+
+.logo__link {
+  display: none;
+}
+
+.navigation__right-side {
+  width: 256px;
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (min-width: 767px) {
+}
+
+@media (min-width: 1024px) {
+}
