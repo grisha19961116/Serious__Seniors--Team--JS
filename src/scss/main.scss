@@ -3,7 +3,7 @@
  */
 @import 'normalize.scss';
 @import 'base.scss';
-@import 'base-font.scss';
+@import 'fonts.scss';
 //   для базових стилів
 @import './helpers/variables.scss';
 @import './helpers/mixins-functions.scss';
@@ -11,10 +11,9 @@
 @import './helpers/animate.scss';
 //   для переміних,ф-й,анімацій і тд...
 
- @import './sections/tryForTest.scss';
- @import './sections/header.scss';
- @import './sections/footer.scss';
- @import './sections/tryForTest.scss';
- @import './sections/detailsPage.scss';
- //   для підключеня стилів секцій!!!
-
+@import './sections/tryForTest.scss';
+@import './sections/header.scss';
+@import './sections/footer.scss';
+@import './sections/tryForTest.scss';
+@import './sections/detailsPage.scss';
+//   для підключеня стилів секцій!!!
