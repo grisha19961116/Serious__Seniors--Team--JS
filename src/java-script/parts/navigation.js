@@ -10,8 +10,8 @@ console.log(refsNavigation.buttonAddFilmToQueue);
 console.log(refsNavigation.buttonAddFilmToWatched);
 console.log(refsNavigation.buttonPrev);
 console.log(refsNavigation.buttonNext);
-// const buttonDeleteFilmFromQueue = document.querySelector('кнопка удаления фильмов з очереди просмотра');
-// const buttonDeleteFilmFromWatched = document.querySelector('кнопка удаления фильмов  из просмотренных со страницы detailsPage');
+// const buttonDeleteFilmFromQueue = document.querySelector('.library__btn--queue');
+// const buttonDeleteFilmFromWatched = document.querySelector('.library__btn--watch');
 let selectFilm = {some:`dataConnected with local storage`};   
 // добавления/удаления фильмов в очередь просмотра и добавления/удаления фильмов из просмотренных
 //  со страницы detailsPage; 
