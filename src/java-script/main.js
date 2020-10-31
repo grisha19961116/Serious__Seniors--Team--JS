@@ -1,6 +1,5 @@
-let selectFilm = true;
 import './parts/navigation'
-console.log(selectFilm, `just for test   let selectFilm`)
+import './parts/initialHomePages';
 import './parts/jsFORtry';
 import './parts/libraryPage';
 import './parts/filmDetailPage.js';
