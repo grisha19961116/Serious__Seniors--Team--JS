@@ -10,5 +10,5 @@ export default {
     buttonAddFilmToWatched : document.querySelector('.js-btn-watched'),
     buttonPrev : document.querySelector('.js-btn-prev'),
     buttonNext : document.querySelector('.js-btn-next'),
-    
+    homepageList: document.querySelector('.js-list-render'),
 }

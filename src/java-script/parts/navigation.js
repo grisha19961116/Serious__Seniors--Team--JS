@@ -1,15 +1,5 @@
-import refsNavigation from '../refsNavigation'
-console.log(refsNavigation.homeDom);
-console.log(refsNavigation.libraryDom);
-console.log(refsNavigation.filmDetailPageSection);
-console.log(refsNavigation.homePageSection);
-console.log(refsNavigation.filmLibraryPageSection);
-console.log(refsNavigation.buttonShowLIstQueue);
-console.log(refsNavigation.buttonFilmsWatched);
-console.log(refsNavigation.buttonAddFilmToQueue);
-console.log(refsNavigation.buttonAddFilmToWatched);
-console.log(refsNavigation.buttonPrev);
-console.log(refsNavigation.buttonNext);
+import refsNavigation from '../refsNavigation';
+
 // const buttonDeleteFilmFromQueue = document.querySelector('кнопка удаления фильмов з очереди просмотра');
 // const buttonDeleteFilmFromWatched = document.querySelector('кнопка удаления фильмов  из просмотренных со страницы detailsPage');
 let selectFilm = {some:`dataConnected with local storage`};   
@@ -36,7 +26,7 @@ let selectFilm = {some:`dataConnected with local storage`};
 // - вешаем слушателей на переход на домашнюю страницу и страницу библиотеки в хедере.
 // - на логотип повесить запуск функции activeHomePage, чтобы при клике туда возвращаться.
 
-const activeHomePage = () =>{
+function activeHomePage () {
     console.log(`hello from navigation.js of activeHomePage function`);
 
     refsNavigation.homeDom.addEventListener('click',((even) => {
@@ -57,7 +47,7 @@ const activeHomePage = () =>{
 //  и удаляет ненужных всех слушателей  (таких 4 во всем проекте не нужных на этой странице);
 }
 activeHomePage();
-const activeLibraryPage = () => {
+function activeLibraryPage () {
     console.log(`hello from navigation.js of activeLibraryPage function`);
     refsNavigation.libraryDom.addEventListener('click',((even) => {
         //    показывает страницу с библиотекой и прячет остальные
@@ -73,7 +63,17 @@ const activeLibraryPage = () => {
 }
 activeLibraryPage();
 console.log(`hello from navigation.js`);
-const activeDetailsPage = (movieId,itsLibraryFilm) => {
+function activeDetailsPage (movieId,boolean) {
+    // refsNavigation.homepageList.addEventListener('click', ((even) => {
+    //     const homepageLi = document.querySelector('.homepage-list__li');
+    //     console.log(even.target);
+    //     console.log(dataFromApi)
+    //     if(even.target.tagName === "LI"){
+    //       homepageLi.addEventListener('click',(activeDetailsPage(dataFromApi,false)))
+    //     }
+    //   }))
+    console.log(movieId,`hello from navigation.js of activeDetailsPage function`);
+    console.log(boolean,`hello from navigation.js of activeDetailsPage function`);
     // - создаем функцию activeDetailsPage которая показывает страницу детальной отрисовки фильма
     //  и прячет остальные, функция принимает два параметра 
     // movieId и itsLibraryFilm (это bool) тоесть true or false
@@ -89,6 +89,5 @@ const activeDetailsPage = (movieId,itsLibraryFilm) => {
         // selectFilm = {`нужным объектом`};
         // запускает функцию showDetails() (которую сделает 4й участник);
     }
-    console.log(`hello from navigation.js of activeDetailsPage function`);
 }
-
+export  {activeHomePage,activeLibraryPage,activeDetailsPage} ;

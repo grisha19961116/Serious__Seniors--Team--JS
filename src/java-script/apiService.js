@@ -8,6 +8,7 @@ export default {
       })
       .then((data) => {
         console.log('Data: from apiService', data);
+        return data;
     })
     },
   }
@@ -15,7 +16,4 @@ export default {
 //     дальше поїали що вам потрібно catch(і робимо своє завдання ),робимо в себе імпорт як указано і використовуємо як метод обєкта!!!
 //     який приймає першим аргументом слово чи букву пошуку ,а іншим аргументом сторінку
 //     думаю все зрозуміл:)
-//     import apiService from './apiService.js';
-//     apiService.getFullRequest('london',2).catch((showExample) => {
-//     console.log(showExample);
 // }) 
