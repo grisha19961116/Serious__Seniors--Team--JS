@@ -5,7 +5,7 @@
     display: block;
     width: 100%;
     margin: 0 auto;
-    height: 300px;
+    height: auto;
     background-color: rgb(136, 170, 102);
     padding-top: 30px;
     padding-bottom: 30px;
@@ -15,4 +15,15 @@
     width: 70%;
     margin-bottom: 30px;
     background-color: chartreuse;
+}
+.search__form{
+    width: 60%;
+    height: 80px;
+    margin: 0 auto;
+}
+.js-btn-watched--active{
+    background-color: cyan;
+} 
+.js-btn-queue--active{
+    background-color: cyan;
 }

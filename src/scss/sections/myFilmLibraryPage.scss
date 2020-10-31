@@ -13,12 +13,16 @@
   border: transparent;
   outline: none;    
 }
-    
-.library__btn:hover {
-  background-color: #77c1bb;
-  color: #ffffff;
-      ransition: background-color 0.2s linear;    
-}
+.library__btn--active{
+    background-color: #77c1bb;
+    color: #ffffff;
+    transition: background-color 0.2s linear;  
+}    
+// .library__btn:hover {
+//   background-color: #77c1bb;
+//   color: #ffffff;
+//       transition: background-color 0.2s linear;    
+// }
     
 .library-list {
   display: flex;
