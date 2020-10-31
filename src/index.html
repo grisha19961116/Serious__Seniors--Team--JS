@@ -41,40 +41,83 @@
 
   <!-- //Main// -->
   <!-- homePage(2 участник-Константин) -->
-  <section class="homePage movies-wrap">
-  <div class="homePage__search">
-    <div class="search container form-wrap">
-      <form class="search__form">
-        <button class="search__btn" type="submit"></button>
-        <input
-          class="search__film"
-          atribu
-          type="search"
-          placeholder="Write movie name and click Enter"
-        />
-      </form>
-    </div>
-  </div>
-  <!-- <div id="loader"></div> -->
-  <div class="container animate-bottom" id="myDiv">
-    <div class="listMovie">
-      <div class="listMovie__item" data-type="playing">Now playing</div>
-      <div class="listMovie__item" data-type="popular">Popular</div>
-      <div class="listMovie__item" data-type="top">Top rated</div>
-      <div class="listMovie__item" data-type="upcoming">Upcoming</div>
-    </div>
+  <section class="home-page js-home-page container">
+  <!-- input -->
+  <div class="search-form__wrapper">
+    <form class="search-form" action="#" method="get">
 
-    <ul class="list js-list" data-page="home"></ul>
-<!-- li 1 участника??? -->
-    <div class="homePage__navBtn">
-      <div class="homePage__btns">
-        <button class="homePage__btnsAdd js-btn-prev">Prev</button>
-        <button class="homePage__btnsAdd page-number">1</button>
-        <button class="homePage__btnsAdd js-btn-next">Next</button>
-      </div>
-    </div>
+      <!-- Тип инпута  type="search"  !!!! -->
+      <input class="search-form__input" type="text" value="" placeholder="Write movie name and click Enter" />
+
+    </form>
+    <!-- Ошибка при неккоректном вводе названия фильма -->
+    <!-- в js настроить что класс меняется на search-form__error--visibale для отображения ошибки -->
+    <p class="search-form__error search-form__error--hidden">
+      The movie name was entered incorrectly! Please try again.
+    </p>
+  </div>
+
+  <!-- список фильмов -->
+  <ul class="movies"></ul>
+  </div>
+
+  <!-- plagination -->
+  <!-- на див с кнопками добавить класс class="visually-hidden" чтоб блок с кнопками не отображался до загрузки карточек с фильмами-->
+  <div id="page-counter" class="page-counter__wrapper">
+    <!-- На кнопках в спан добавить динамично class="visually-hidden" чтоб кнопка исчезла -->
+    <!-- Либо динамично убрать класс чтоб кнопка не была видна -->
+    <button type="button" data-action="previous" class="page-counter__btn"><span>Prev</span></button>
+    <button type="button" class="page-counter__btn"><span id="page-number">1</span></button>
+    <button type="button" data-action="next" class="page-counter__btn"><span>Next</span></button>
   </div>
 </section>
+  <!-- END homePage(2 участник) END-->
+
+  <!-- SECTION FILM-DETAILS-PAGE START -->
+  <section class="film-details-page js-film-details-page">
+
+    <!-- !!!!!!Рендерится с темплейтов, оставил пока, чтоб видно было что верстаю !!!!!!-->
+    <div class="film-details-page__wrapper container">
+      <div class="film-details__img-box">
+        <!-- <img class="film-details__img"
+          src="https://i.pinimg.com/originals/76/6c/f7/766cf770ea8dd3529bd8e0c41d6784be.jpg" alt="{{title}}" /> -->
+      </div>
+      <div class="film-details__wrapper">
+        <div class="film-details__wrapper-item film-details__wrapper-item--film">
+          <h2 class="film-details__title">
+            {{title}}
+            <span class="film-details__year">({{release_date}})</span>
+          </h2>
+          <ul class="film-details__list">
+            <li class="film-details__item film-details__item--color">
+              <span class="film-details__vote">{{vote_average}} /</span>
+              <span class="film-details__votes">{{vote_count}}</span>
+            </li>
+            <li class="film-details__item">
+              <span class="film-details__popularity">{{popularity}}</span>
+            </li>
+            <li class="film-details__item film-details__item--color">
+              <span class="film-details__original-title">{{original_title}}</span>
+            </li>
+            <li class="film-details__item">
+              <span class="film-details__genre">
+                {{#each genres}}
+                <span class="film-details__genre">{{this.name}}</span>
+                {{/each}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="film-details__wrapper-item film-details__wrapper-item--about">
+          <h3 class="film-details__title">About</h3>
+          <p class="film-details__description">{{overview}}</p>
+        </div>
+        <div class="film-details__wrapper-item film-details__wrapper-item--buttons">
+          <button class="btn__film-details btn-watched js-btn-watched">Watched</button>
+          <button class="btn__film-details btn-queue js-btn-queue">Queue</button>
+        </div>
+      </div>
+    </div>
+  </section>
 <!-- END homePage(2 участник) END-->
     
       <!-- SECTION FILM-DETAILS-PAGE START -->
