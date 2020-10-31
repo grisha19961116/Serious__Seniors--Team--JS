@@ -26,10 +26,10 @@
   <!-- Начало раздела labraryPage OOOO-->
   <section class="myFilmLibraryPage__section" id="myFilmLibraryPage__section">
     <div class="library-btns">
-      <button id="js-buttonWatchedFilms" class="btn library__btn library__btn--watch library__btn--active">
+      <button id="js-buttonWatchedFilms" class="btn library__btn library__btn--watch library__btn--active ">
         Watched
       </button>
-      <button id="js-buttonQueueFilms" class="btn library__btn library__btn--queue">
+      <button id="js-buttonQueueFilms" class="btn library__btn library__btn--queue ">
         Queue
       </button>
     </div>
@@ -50,13 +50,12 @@
     </div>
     <!-- <div id="loader"></div> -->
     <div class="container animate-bottom" id="myDiv">
-      <div class="listMovie">
+      <!-- <div class="listMovie">
         <div class="listMovie__item" data-type="playing">Now playing</div>
         <div class="listMovie__item" data-type="popular">Popular</div>
         <div class="listMovie__item" data-type="top">Top rated</div>
         <div class="listMovie__item" data-type="upcoming">Upcoming</div>
-      </div>
-
+      </div> -->
       <ul class="list-render js-list-render" data-page="home"></ul>
       <!-- li 1 участника??? -->
       <div class="homePage__navBtn">
@@ -76,8 +75,8 @@
     <!-- !!!!!!Рендерится с темплейтов, оставил пока, чтоб видно было что верстаю !!!!!!-->
     <div class="film-details-page__wrapper container">
       <div class="film-details__img-box">
-        <!-- <img class="film-details__img"
-          src="https://i.pinimg.com/originals/76/6c/f7/766cf770ea8dd3529bd8e0c41d6784be.jpg" alt="{{title}}" /> -->
+        <img class="film-details__img"
+          src="https://i.pinimg.com/originals/76/6c/f7/766cf770ea8dd3529bd8e0c41d6784be.jpg" alt="{{title}}" />
       </div>
       <div class="film-details__wrapper">
         <div class="film-details__wrapper-item film-details__wrapper-item--film">
@@ -109,8 +108,8 @@
           <p class="film-details__description">{{overview}}</p>
         </div>
         <div class="film-details__wrapper-item film-details__wrapper-item--buttons">
-          <button class="btn__film-details btn-watched js-btn-watched">Watched</button>
-          <button class="btn__film-details btn-queue js-btn-queue">Queue</button>
+          <button class="btn__film-details btn-watched js-btn-watched">Add to watched</button>
+          <button class="btn__film-details btn-queue js-btn-queue">Add to queue</button>
         </div>
       </div>
     </div>
