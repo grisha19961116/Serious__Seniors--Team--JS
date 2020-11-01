@@ -1,29 +1,23 @@
 export  {activeHomePage,activeLibraryPage,activeDetailsPage} ;
 import refsNavigation from '../refsNavigation';
+import {plaginationNavigation} from './searchAndPlaginationHomePage'
 import variables from '../variables';
 import localStorage from '../localStorageSettings';
 import  {drawQueueFilmList} from './libraryPage';
 import {drawWatchedFilmList} from './libraryPage';
 import {showDetails,toggleToQueue,toggleToWatched} from './filmDetailPage.js';
+// console.log(plaginationNavigation,`function konstantins`)
 console.log(drawQueueFilmList,drawWatchedFilmList,`romans functions`);
 showDetails();
-// toggleToQueue();
 console.log(showDetails,`function showDetails is Andria Kikot`);
 console.log(toggleToQueue,`toggleToQueue ffff`);
 function activeHomePage () {
-    refsNavigation.homeDom.addEventListener('click',((even) => {
+    refsNavigation.homeDom.addEventListener('click',(() => {
         refsNavigation.filmDetailPageSection.classList.add('hidden');
         refsNavigation.filmLibraryPageSection.classList.add('hidden');
-        refsNavigation.buttonNext.addEventListener('click',(() => {
-            variables.pageNumber ++ ;
-            refsNavigation.buttonNumber.textContent = variables.pageNumber;
-        }));
-        refsNavigation.buttonPrev.addEventListener('click',(() => {
-            if(variables.pageNumber <= 1 ){
-                return;
-            }
-            variables.pageNumber -- ;
-            refsNavigation.buttonNumber.textContent = variables.pageNumber;
+        
+        refsNavigation.buttonNext.addEventListener('click',((even) => {
+            plaginationNavigation(even);
         }));
     }));
 }

@@ -3,7 +3,7 @@ import refsNavigation from '../refsNavigation';
 import {activeDetailsPage} from './navigation';
 import apiService from '../apiService';
 import variables from '../variables';
-function createCardFunc(dataFromApi) {
+export function createCardFunc(dataFromApi) {
   const renderFilmsList = homepageGalleryTpl(dataFromApi);
   refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);
   const homepageLi = document.querySelector('.homepage-list__li');
@@ -20,10 +20,18 @@ function createCardFunc(dataFromApi) {
     activeDetailsPage(forThrowDataSelect,false);
   }));
 }
-function fetchPopularMoviesList(pageNumber) {
-
-  apiService.getFullRequest('london',variables.pageNumber).then((data) => {
-    variables.renderFilms = [...data.results];
+function fetchPopularMoviesList(searchWord) {
+  const pageNumber = 1;
+  let valueForm ;
+  if(searchWord === '' ){
+    valueForm = 'popular';
+    return;
+  } else {
+    valueForm = searchWord;
+  }
+  variables.pageNumber = pageNumber;
+  apiService.getFullRequest(valueForm,pageNumber).then((data) => {
+    variables.renderFilms = [...data.results];// we are need 6 
     createCardFunc(variables.renderFilms);
   })
 }

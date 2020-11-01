@@ -12,4 +12,7 @@ export default {
     buttonNumber : document.querySelector('.page-number'),
     buttonNext : document.querySelector('.js-btn-next'),
     homepageList: document.querySelector('.js-list-render'),
+    searchFormDom: document.querySelector('.search__form'),
+    inputFormDom: document.querySelector('.search__film'),
+    searchFormErrorDom: document.querySelector('.search-form__error'),
 }
