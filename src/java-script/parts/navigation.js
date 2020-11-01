@@ -1,9 +1,15 @@
 export  {activeHomePage,activeLibraryPage,activeDetailsPage} ;
 import refsNavigation from '../refsNavigation';
 import variables from '../variables';
+import localStorage from '../localStorageSettings';
 import  {drawQueueFilmList} from './libraryPage';
 import {drawWatchedFilmList} from './libraryPage';
+import {showDetails,toggleToQueue,toggleToWatched} from './filmDetailPage.js';
 console.log(drawQueueFilmList,drawWatchedFilmList,`romans functions`);
+showDetails();
+// toggleToQueue();
+console.log(showDetails,`function showDetails is Andria Kikot`);
+console.log(toggleToQueue,`toggleToQueue ffff`);
 function activeHomePage () {
     refsNavigation.homeDom.addEventListener('click',((even) => {
         refsNavigation.filmDetailPageSection.classList.add('hidden');
@@ -37,19 +43,20 @@ function activeLibraryPage () {
     }));
 }
 activeLibraryPage();
-function activeDetailsPage (movieId,check) {
+function activeDetailsPage (movieSelectedById,check) {
+ // - пишем функцию showDetails которая принимает параметром selectFilm 
+// (глобальная переменная - объект, которая создана в задаче номер три)
+//  и рендерит всю разметку согласно макета, в этой функции запускается функция
+//   monitorButtonStatusText.
+// * из DOM достукивается до нужных кнопок участник 3 и вешает функции  toggleToQueue 
+//  и toggleToWatched слушателями на страницу деталей и удаляет там где не нужно.
+
     refsNavigation.homePageSection.classList.add('hidden');
     refsNavigation.filmLibraryPageSection.classList.add('hidden');
     if(check){
-        variables.selectFilm = [...movieId];
-        console.log(variables.selectFilm,`data from ctiveDetailsPage and flag is true`);
-        //запускает функцию showDetails(variables.selectFilm) (которую сделает 4й участник);
-        // if boolean (true);
+        showDetails(movieSelectedById);
     } else {
-        variables.selectFilm = [...movieId];
-        console.log(variables.selectFilm,`data from activeDetailsPage and flag is false`)
-        //запускает функцию showDetails(variables.selectFilm) (которую сделает 4й участник);
-        // if boolean (false);
+        showDetails(movieSelectedById);
     }
     refsNavigation.buttonAddFilmToQueue.addEventListener('click',((even) => {
         refsNavigation.buttonAddFilmToWatched.classList.remove('js-btn-watched--active');
