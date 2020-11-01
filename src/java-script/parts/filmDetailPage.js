@@ -1,11 +1,12 @@
+export default { toggleToQueue, toggleToWatched, showDetails };
 import detailsPage from '../templates/details-page.hbs';
-
-const btnQueue = document.querySelector('.js-btn-queue'); //кнопка добавления/удаления фильмов из очереди
-const btnWatched = document.querySelector('.js-btn-watched'); //кнопка добавления/удаления фильмов из просмотренных
-const sectionFilmDetailsPage = document.querySelector('.sectionFilmDetailsPage');  //секция для рендера в неё из темплейтов
-
-const localStoragefilmsQueue = localStorage.getItem('filmsQueue'); //читаем localStorage по ключу filmsQueue
-const localStoragefilmsWatched = localStorage.getItem('filmsWatched'); //читаем localStorage по ключу filmsWatched
+import refsNavigation from '../refsNavigation';
+import localStorage from '../localStorageSettings';
+const btnQueue = document.querySelector('.js-btn-queue');
+const btnWatched = document.querySelector('.js-btn-watched');
+const sectionFilmDetailsPage = document.querySelector('.sectionFilmDetailsPage');
+const localStoragefilmsQueue = localStorage.getItem('filmsQueue'); 
+const localStoragefilmsWatched = localStorage.getItem('filmsWatched');
 
 function monitorButtonStatusText() {
 
@@ -81,6 +82,3 @@ function showDetails(selectFilm) { //функция принимает пара�
 
 // * из DOM достукивается до нужных кнопок участник 3 и вешает функции  toggleToQueue
 // и toggleToWatched слушателями на страницу деталей и удаляет там где не нужно.
-
-
-export default { toggleToQueue, toggleToWatched, showDetails };

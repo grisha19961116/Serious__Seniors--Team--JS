@@ -3,12 +3,7 @@ import refsNavigation from '../refsNavigation';
 import {activeDetailsPage} from './navigation';
 import apiService from '../apiService';
 import variables from '../variables';
-
 function createCardFunc(dataFromApi) {
-  //  - выбираем из DOM наш список;
-  // - создаем функцию createCardFunc, она принимает параметрами imgPath, filmTitle, movieId создает li согласно макета
-  //   dataFromApi обєкт з якого все беремо imgPath, filmTitle, movieId і вставаляємо в шаблон renderFilmsList,там +-
-  // все готово
   const renderFilmsList = homepageGalleryTpl(dataFromApi);
   refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);
   const homepageLi = document.querySelector('.homepage-list__li');
@@ -16,11 +11,7 @@ function createCardFunc(dataFromApi) {
     console.log(even)
     activeDetailsPage(dataFromApi,false);
   }));
-    //  вешает на homepageLi слушателем функцию activeDetailsPage c параметрами movieId =[dataFromApi](це цілий обєкт з фетча) 
-    //и флагом false так как фильм из библиотеки;
-    //   (смотри пункт “3)” создание activeDetailsPage);
 }
-
 function fetchPopularMoviesList(pageNumber) {
 
   apiService.getFullRequest('london',variables.pageNumber).then((data) => {
@@ -28,7 +19,6 @@ function fetchPopularMoviesList(pageNumber) {
     createCardFunc(variables.renderFilms);
   })
 }
-
 function fetchGenres(dataFromApi) {
   apiService.getFullRequest('discovery',4).then((data) => {
     // забирает жанры и кладет их в переменную genres
@@ -38,7 +28,6 @@ function fetchGenres(dataFromApi) {
     console.log(data.results[9],`fetchGenres`);
   })
 }
-
 fetchPopularMoviesList();
 fetchGenres();
 
