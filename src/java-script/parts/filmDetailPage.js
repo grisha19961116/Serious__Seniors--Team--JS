@@ -1,4 +1,4 @@
-export default {showDetails};
+// export default {showDetails};
 import detailsPage from '../templates/details-page.hbs';
 import refsNavigation from '../refsNavigation';
 import localStorage from '../localStorageSettings';
