@@ -8,8 +8,16 @@ function createCardFunc(dataFromApi) {
   refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);
   const homepageLi = document.querySelector('.homepage-list__li');
   homepageLi.addEventListener('click',((even) => {
-    console.log(even)
-    activeDetailsPage(dataFromApi,false);
+    const idForSearching = Number(even.currentTarget.id);
+    let forThrowDataSelect = [] ;
+    console.log(idForSearching);
+    dataFromApi.forEach(element => {
+      if(element.id === idForSearching ) {
+        forThrowDataSelect = [element];
+        return;
+      } 
+    });
+    activeDetailsPage(forThrowDataSelect,false);
   }));
 }
 function fetchPopularMoviesList(pageNumber) {
