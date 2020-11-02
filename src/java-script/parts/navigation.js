@@ -1,49 +1,53 @@
 export  {activeHomePage,activeLibraryPage,activeDetailsPage} ;
 import refsNavigation from '../refsNavigation';
+import {plaginationNavigation} from './searchAndPlaginationHomePage'
 import variables from '../variables';
 import localStorage from '../localStorageSettings';
 import  {drawQueueFilmList} from './libraryPage';
 import {drawWatchedFilmList} from './libraryPage';
 import {showDetails,toggleToQueue,toggleToWatched} from './filmDetailPage.js';
+// console.log(plaginationNavigation,`function konstantins`)
 console.log(drawQueueFilmList,drawWatchedFilmList,`romans functions`);
 showDetails();
-// toggleToQueue();
 console.log(showDetails,`function showDetails is Andria Kikot`);
 console.log(toggleToQueue,`toggleToQueue ffff`);
 function activeHomePage () {
-    refsNavigation.homeDom.addEventListener('click',((even) => {
-        refsNavigation.filmDetailPageSection.classList.add('hidden');
-        refsNavigation.filmLibraryPageSection.classList.add('hidden');
-        refsNavigation.buttonNext.addEventListener('click',(() => {
-            variables.pageNumber ++ ;
-            refsNavigation.buttonNumber.textContent = variables.pageNumber;
-        }));
-        refsNavigation.buttonPrev.addEventListener('click',(() => {
-            if(variables.pageNumber <= 1 ){
-                return;
-            }
-            variables.pageNumber -- ;
-            refsNavigation.buttonNumber.textContent = variables.pageNumber;
-        }));
-    }));
+// backButton.addEventListener('click', plaginationNavigation);
+// nextButton.addEventListener('click', plaginationNavigation);
+// addQueueButton.removeEventListener('click', toggleToQueue);
+// addWatchedButton.removeEventListener('click', toggleToWatched);
+// queueListButton.removeEventListener('click', drawQueueFilmList);
+// watchedListButton.removeEventListener('click', drawWatchedFilmList);
 }
+refsNavigation.homeDom.addEventListener('click',(() => {
+    refsNavigation.filmDetailPageSection.classList.add('hidden');
+    refsNavigation.filmLibraryPageSection.classList.add('hidden');
+    
+    refsNavigation.buttonNext.addEventListener('click',((even) => {
+        plaginationNavigation(even);
+    }));
+    // удаляємо слухачів( тонгл то кю) , (тонгл то ватч), удаляємо драв воч лист ,драв черга лист
+}));
 activeHomePage();
 function activeLibraryPage () {
     console.log(`hello from navigation.js of activeLibraryPage function`);
-    refsNavigation.libraryDom.addEventListener('click',((even) => {
-        refsNavigation.filmDetailPageSection.classList.add('hidden');
-        refsNavigation.homePageSection.classList.add('hidden');
-        refsNavigation.filmLibraryPageSection.classList.remove('hidden');
-        refsNavigation.buttonFilmsWatched.addEventListener('click',((even) => {
-            drawWatchedFilmList();
-        }));
-        refsNavigation.buttonShowLIstQueue.addEventListener('click',(() => {
-            drawQueueFilmList();
-        }))
+    refsNavigation.filmDetailPageSection.classList.add('hidden');
+    refsNavigation.homePageSection.classList.add('hidden');
+    refsNavigation.filmLibraryPageSection.classList.remove('hidden');
+    drawQueueFilmList();
+    refsNavigation.libraryDom.addEventListener('click',((even) => {    
     }));
+
+    refsNavigation.buttonFilmsWatched.addEventListener('click',((even) => {
+        drawWatchedFilmList();
+    }));
+
+    refsNavigation.buttonShowLIstQueue.addEventListener('click',(() => {
+        drawQueueFilmList();
+    }));
+    // удаляємо слухачів( тонгл то кю) , (тонгл то ватч), знімаю слухачів з некст і прев
 }
-activeLibraryPage();
-function activeDetailsPage (movieSelectedById,check) {
+function activeDetailsPage (movieSelectedById,checkFlag) {
  // - пишем функцию showDetails которая принимает параметром selectFilm 
 // (глобальная переменная - объект, которая создана в задаче номер три)
 //  и рендерит всю разметку согласно макета, в этой функции запускается функция
@@ -53,11 +57,16 @@ function activeDetailsPage (movieSelectedById,check) {
 
     refsNavigation.homePageSection.classList.add('hidden');
     refsNavigation.filmLibraryPageSection.classList.add('hidden');
-    if(check){
-        showDetails(movieSelectedById);
+    if(checkFlag){
+        const requestWatchedFilmsFromLocStor = [];//get array from local, from library(flag true)
+        // and findBy(movieSelectedById) and find it in (get array from local) and inseart it in variables.selectFilm;;
+        //
     } else {
-        showDetails(movieSelectedById);
+        // зсилаюсь на вар рендер філмс який запис при запросі першому
+        // variables.selectFilm = variables.renderFilms and search 'movieSelectedById' in (variables.renderFilms)
+
     }
+    showDetails(movieSelectedById);  /// variables.selectFilmпередаємо Андрійж
     refsNavigation.buttonAddFilmToQueue.addEventListener('click',((even) => {
         refsNavigation.buttonAddFilmToWatched.classList.remove('js-btn-watched--active');
         refsNavigation.buttonAddFilmToWatched.textContent = 'Add to watched';

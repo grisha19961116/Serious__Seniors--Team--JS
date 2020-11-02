@@ -46,6 +46,9 @@
           <button class="search__btn" type="submit"></button>
           <input class="search__film" atribu type="search" placeholder="Write movie name and click Enter" />
         </form>
+        <p class="search-form__error search-form__error--hidden">
+          The movie name was entered incorrectly! Please try again.
+        </p>
       </div>
     </div>
     <!-- <div id="loader"></div> -->
@@ -60,9 +63,9 @@
       <!-- li 1 участника??? -->
       <div class="homePage__navBtn">
         <div class="homePage__btns">
-          <button class="homePage__btnsAdd js-btn-prev">Prev</button>
+          <button class="homePage__btnsAdd js-btn-prev" id="prev">Prev</button>
           <button class="homePage__btnsAdd page-number">1</button>
-          <button class="homePage__btnsAdd js-btn-next">Next</button>
+          <button class="homePage__btnsAdd js-btn-next" id="next">Next</button>
         </div>
       </div>
     </div>
@@ -71,8 +74,7 @@
 
   <!-- SECTION FILM-DETAILS-PAGE START -->
   <section class="film-details-page js-film-details-page">
-
-    <!-- !!!!!!Рендерится с темплейтов, оставил пока, чтоб видно было что верстаю !!!!!!-->
+    <!-- !!!!!!Рендерится с темплейтов, оставил пока, чтоб видно было что верстаю !!!!!!
     <div class="film-details-page__wrapper container">
       <div class="film-details__img-box">
         <img class="film-details__img"
@@ -112,7 +114,7 @@
           <button class="btn__film-details btn-queue js-btn-queue">Add to queue</button>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
   <!-- SECTION FILM-DETAIL-PAGE END -->  
 

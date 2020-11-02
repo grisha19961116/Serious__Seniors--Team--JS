@@ -3,4 +3,5 @@ export default {
      renderFilms : null,
      genres : null,
      pageNumber : 1,
+     inputValue : '',
 }

@@ -8,7 +8,10 @@ import {activeDetailsPage} from './navigation';
 const libraryFilmList = document.querySelector('.library__filmList');
 
 function createLibraryCardFunc() {
+
     // `масив(обектов)` принімає в параметри createLibraryCardFunc()  данні від Андрія
+    // [{id:33,name}{fffgf}{dfddfdf}]  [{one = id }].leght == 1 
+    /// 
     const dataFromApi = variables.selectFilm;
     refsNavigation.homepageList.innerHTML = renderFilmsList ;
     const renderFilmsList = libraryPageGalleryTpl(variables.selectFilm);
@@ -16,6 +19,7 @@ function createLibraryCardFunc() {
     // данні від Андрія , які користувач добавив через кнопки додати в чергу просмотрів і додати до списку (обєкт(масивів))
     homepageLi.addEventListener('click',((even) => {
     //   console.log(even,`event from createLibraryCardFunc in Romans section`);
+
       const idForSearching = Number(even.currentTarget.id);
       let movieId = [] ;
       console.log(idForSearching);
@@ -25,9 +29,12 @@ function createLibraryCardFunc() {
           return;
         } 
       });
+      //
       // movieId (это масив с одним обектом) и флаг тру!!! передаєш вибраний кліком обєкт по айді!!!!
+      // movieId = [{one = id }]     [{one = id }]!!!это 
       activeDetailsPage(movieId,true);
     }));
+    // [{id:33,name}{fffgf}{dfddfdf}] === [{one = id }];
 }
 function drawQueueFilmList() {    
     if(localStorage.getFilmsQueue === null){
@@ -44,7 +51,8 @@ function drawQueueFilmList() {
         // кнопке очереде просомотра.
         return;
     }
-    createLibraryCardFunc();
+    // data from local storage;
+    createLibraryCardFunc(`data from local storage`);
 }
 
 

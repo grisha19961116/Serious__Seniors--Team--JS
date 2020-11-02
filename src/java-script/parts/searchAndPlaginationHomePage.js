@@ -1,67 +1,73 @@
-// ключ API
-const apiKey = 'f2c0383f553427336b1984c7194d50ac';
+import apiService from '../apiService';
+import refsNavigation from '../refsNavigation';
+import variables from '../variables';
+import {createCardFunc} from './initialHomePages'
 
-// ведённое слово-названия фильма, который ищут
-let inputValue = ' ';
-
-// ссылка на форму
-const searchForm = document.querySelector('form.search-form');
-
-// ссылка на инпут
-const $input = document.querySelector('.search-form__input');
-
-// ссылка на параграф с ошибкой
-const $searchFormError = document.querySelector('p.search-form__error');
-
-// На форму поставил слушатель событий
-searchForm.addEventListener('submit', event => searchFilms(event));
-
-// функция поиска фильма
-function searchFilms(event) {
-  // убрал дефолтное поведение формы
-  event.preventDefault();
-
-  //   Записываю в переменную inputValue значение записанное в инпут(название фильма которое ищут)
-  inputValue = $input.value.trim();
-  //  Делегированием не удаётся достучатся до введённого слова в инпут
-  // const input = event.currentTarget;
-  // достучалась до инпута (елемента формы)
-  // console.dir(input.elements);
-
-  // функция очистки результата поиска перед новым вводом поиска фильма
-
-  searchForm.reset();
-
-  // функция поиска фильма
-  fetchFilms(inputValue);
-}
-
-// функция отправки запроса на API
-function fetchFilms(inputValue) {
-  // возвращаем из функции промис
-  return fetch(
-    'https://api.themoviedb.org/3/search/movie/?api_key=' +
-      `${apiKey}` +
-      '&query=' +
-      `${inputValue}`,
-  )
-    .then(responce => responce.json())
-    .then(movies => {
-      // в случае ответа пустым массивом отрисовывать ошибку
-      if (movies.results.length === 0) {
-        $searchFormError.classList.replace(
+function fetchFilms(searchWord, number) {
+  let valueForm ;
+  if(searchWord === '' ){
+    valueForm = 'popular';
+    return;
+  } else {
+    valueForm = searchWord;
+  }
+  apiService
+    .getFullRequest(valueForm, number)
+    .then(dataFromApi => {
+      console.log(dataFromApi);
+      if (dataFromApi.length === 0) {
+        refsNavigation.searchFormErrorDom.replace(
           'search-form__error--hidden',
-          'search-form__error--visibale',
-        );
+          'search-form__error--visibale',);
+        variables.pageNumber = 1; 
+        fetchPopularMovies(variables.pageNumber);
+        return;
       } else {
-        //   если массив не пустой пришёл
-        // в случае корректного ответа чистить ul
-
-        $moviesList.innerHTML = ' ';
-
-        // !!!!!!и с помощью createCardFunc созданной первым участником отрисовывать фильмы, не забываем также положить в глобальную переменную renderFilms результат;
-        console.log(movies);
-      }
-    })
-    .catch(apiError => console.log(apiError));
+        refsNavigation.homepageList.innerHTML = '';
+        variables.renderFilms = [...dataFromApi.results];
+        createCardFunc(variables.renderFilms);
+      }})
+    .catch(apiError => console.error(apiError));
 }
+
+function searchFilms(event) {
+  // event.preventDefault();
+  variables.inputValue = refsNavigation.inputFormDom.value.trim();
+  refsNavigation.searchFormDom.reset();
+  fetchFilms(variables.inputValue,variables.pageNumber);
+}
+refsNavigation.searchFormDom.addEventListener('submit', ((event) => {
+  searchFilms(event);
+  event.preventDefault();
+}));
+export function plaginationNavigation(event) {
+  console.log(variables.pageNumber,`variables.pageNumber`);
+const findById = event.currentTarget.id;
+refsNavigation.buttonNumber.textContent = variables.pageNumber;
+if (findById === 'prev') {
+  variables.pageNumber -= 1;
+  if(variables.pageNumber === 1 ){
+    fetchPopularMoviesList(searchWord);
+    refsNavigation.buttonPrev.classList.add('.hidden');
+    return;
+  } else if(variables.pageNumber >= 2){
+    refsNavigation.buttonPrev.classList.remove('.hidden');
+  }
+  return;
+}
+if(findById === 'next'){
+  const searchWord = variables.inputValue;
+  variables.pageNumber ++ ;
+  console.log(variables.pageNumber);
+  refsNavigation.buttonPrev.classList.remove('.hidden')
+  };
+  variables.inputValue = '';
+  const searchWord = variables.inputValue;
+  fetchFilms(searchWord,variables.pageNumber);
+};
+// - создаем функция plaginationNavigation принимающую ивент, по id она определяет
+//  какая из кнопок была нажат и в зависимости от этого по разному отрабатывает 
+//  изменяя при этом глобальные переменные pageNumber, прорисовуя его в контейнере в DOM и
+//   запускает на пустую строчку inputValue функцию fetchPopularMoviesList или fetchFilms; 
+// - кнопка назад должна исчезать когда текущее количество страниц “1” и появляться при “2”
+//  и более; - вешаем слушателем функцию plaginationNavigation на кнопки вперед и назад.
