@@ -8,7 +8,6 @@ import { drawWatchedFilmList } from './libraryPage';
 import { showDetails, toggleToQueue, toggleToWatched } from './filmDetailPage.js';
 // console.log(plaginationNavigation,`function konstantins`)
 console.log(drawQueueFilmList, drawWatchedFilmList, `romans functions`);
-showDetails();
 console.log(showDetails, `function showDetails is Andria Kikot`);
 console.log(toggleToQueue, `toggleToQueue ffff`);
 function activeHomePage() {
