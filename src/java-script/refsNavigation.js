@@ -15,4 +15,5 @@ export default {
     searchFormDom: document.querySelector('.search__form'),
     inputFormDom: document.querySelector('.search__film'),
     searchFormErrorDom: document.querySelector('.search-form__error'),
+    logoDom : document.querySelector('.navigation__left-side'),
 }

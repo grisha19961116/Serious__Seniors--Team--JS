@@ -13,7 +13,7 @@ export function createCardFunc(dataFromApi) {
     console.log(idForSearching);
     dataFromApi.forEach(element => {
       if(element.id === idForSearching ) {
-        forThrowDataSelect = [element];
+        forThrowDataSelect = element;
         return;
       } 
     });

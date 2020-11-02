@@ -61,7 +61,7 @@ export function showDetails(selectedFilm) {
     console.log(selectedFilm,`get data from api from navigation.js`);
     //функция принимает параметром selectFilm(глобальная переменная
     // - объект, которая создана в задаче номер три)
-    // const murkup = detailsPage(selectFilm);
+    // const murkup = detailsPage(selectedFilm);
     // sectionFilmDetailsPage.insertAdjacentHTML('beforeend', murkup); 
     // и рендерит всю разметку согласно макета
     // monitorButtonStatusText(); функция следит за состоянием(значок и текст в кнопке);
