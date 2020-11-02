@@ -1,4 +1,3 @@
-// export default {showDetails};
 import detailsPage from '../templates/details-page.hbs';
 import refsNavigation from '../refsNavigation';
 import localStorage from '../localStorageSettings';
@@ -58,7 +57,7 @@ export function toggleToWatched() { //будет добавлять или уд�
 };
 
 export function showDetails(selectedFilm) {
-    console.log(selectedFilm,`get data from api from navigation.js`);
+    console.log(selectedFilm,`get data from api from navigation.js selectedFilm`);
     //функция принимает параметром selectFilm(глобальная переменная
     // - объект, которая создана в задаче номер три)
     // const murkup = detailsPage(selectedFilm);
