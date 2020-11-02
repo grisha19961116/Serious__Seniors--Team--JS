@@ -4,6 +4,7 @@ import {activeDetailsPage} from './navigation';
 import apiService from '../apiService';
 import variables from '../variables';
 export function createCardFunc(dataFromApi) {
+  console.log(dataFromApi,`gfffffffffffffffff`);
   const renderFilmsList = homepageGalleryTpl(dataFromApi);
   refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);
   const homepageLi = document.querySelector('.homepage-list__li');
@@ -13,10 +14,12 @@ export function createCardFunc(dataFromApi) {
     console.log(idForSearching);
     dataFromApi.forEach(element => {
       if(element.id === idForSearching ) {
-        forThrowDataSelect = [element];
+        forThrowDataSelect = element;
         return;
       } 
+
     });
+    console.log(forThrowDataSelect,`dddddddddddd`);
     activeDetailsPage(forThrowDataSelect,false);
   }));
 }
@@ -30,22 +33,27 @@ function fetchPopularMoviesList(searchWord) {
     valueForm = searchWord;
   }
   variables.pageNumber = pageNumber;
-  apiService.getFullRequest(valueForm,pageNumber).then((data) => {
+  apiService.getFullRequest('popular',pageNumber).then((data) => {
     variables.renderFilms = [...data.results];// we are need 6 
     createCardFunc(variables.renderFilms);
   })
 }
-function fetchGenres(dataFromApi) {
-  apiService.getFullRequest('discovery',4).then((data) => {
-    // забирает жанры и кладет их в переменную genres
-   //  (она понадобится в работе следующим участникам); 
-   // - запускаем функцию fetchPopularMoviesList и fetchGenres.
-  //  variables.genres = [...data.results[перебрати весь масив і запушити тільки жанри]];
-    console.log(data.results[9],`fetchGenres`);
-  })
-}
+// function fetchGenres(dataFromApi) {
+//   apiService.getFullRequest('discovery',4).then((data) => {
+//     // забирает жанры и кладет их в переменную genres
+//    //  (она понадобится в работе следующим участникам); 
+//    // - запускаем функцию fetchPopularMoviesList и fetchGenres.
+//   //  variables.genres = [...data.results[перебрати весь масив і запушити тільки жанри]];
+//     console.log(data.results[9],`fetchGenres`);
+//   })
+// }
+
+// function fetchGenres() {
+//   apiService.getFullRequestGenre();
+//   console.log(variables.genres,`ffffffffffffffffffffffffff`)
+//    };
 fetchPopularMoviesList();
-fetchGenres();
+// fetchGenres();
 
 
 
