@@ -4,6 +4,9 @@ import localStorage from '../localStorageSettings';
 import variables from '../variables';
 import libraryPageGalleryTpl from '../templates/library-gallery.hbs';
 import {activeDetailsPage} from './navigation';
+
+const libraryFilmList = document.querySelector('.library__filmList');
+
 function createLibraryCardFunc() {
     // `масив(обектов)` принімає в параметри createLibraryCardFunc()  данні від Андрія
     const dataFromApi = variables.selectFilm;
@@ -26,33 +29,38 @@ function createLibraryCardFunc() {
       activeDetailsPage(movieId,true);
     }));
 }
-function drawQueueFilmList() {
-    refsNavigation.buttonFilmsWatched.classList.remove('library__btn--active');
-    refsNavigation.buttonShowLIstQueue.classList.add('library__btn--active');
+function drawQueueFilmList() {    
     if(localStorage.getFilmsQueue === null){
-        console.log(`localStorage is empty localStorage.getFilmsQueue === null`) 
-        return;
-    } else if(localStorage.getFilmsQueue.length === 0 || localStorage.getFilmsQueue === ''){
-//    отрисовать заглушку “You do not have to queue movies to watch. Add them.”,
-// и удаляет класс активной кнопки  у просмотренных фильмов и добавляет
-// такой класс кнопке очереде просомотра;
+        const noMoviesListNotation = document.createElement('li');
+        noMoviesListNotation.textContent = ""        
+        noMoviesListNotation.textContent = 'You do not have to queue movies to watch. Add them.'            
+        const fragment = document.createDocumentFragment()
+        fragment.append(noMoviesListNotation)
+        libraryFilmList.append(fragment)
+        refsNavigation.buttonFilmsWatched.classList.remove('library__btn--active');
+        refsNavigation.buttonShowLIstQueue.classList.add('library__btn--active');
+        // отрисовывает заглушку “You do not have watched movies. Add them.”, 
+        // и удаляет класс активной кнопки у просмотренных фильмов и добавляет такой класс 
+        // кнопке очереде просомотра.
         return;
     }
     createLibraryCardFunc();
 }
 
-function drawWatchedFilmList() {
-        refsNavigation.buttonFilmsWatched.classList.add('library__btn--active');
+
+function drawWatchedFilmList() {        
+    if(localStorage.getWatchedFilm === null){
+        const noMoviesListNotation = document.createElement('li');
+        noMoviesListNotation.textContent = 'You do not have watched movies. Add them.'            
+        const fragment = document.createDocumentFragment()
+        fragment.append(noMoviesListNotation)
+        libraryFilmList.append(fragment)
         refsNavigation.buttonShowLIstQueue.classList.remove('library__btn--active');
-        if(localStorage.getWatchedFilm === null){
-            console.log(`localStorage is empty localStorage.getWatchedFilm === null`) 
-            return;
-        } else if(localStorage.getWatchedFilm.length === 0 && localStorage.getWatchedFilm.includes(0)){
-//       отрисовать заглушку “You do not have watched movies. Add them.”,
-//     и удаляет класс активной кнопки у кнопки очереди просомотра и добавляет такой класс кнопке просмотренных
-//      фильмов.
+        refsNavigation.buttonFilmsWatched.classList.add('library__btn--active');
+        // отрисовывает заглушку “You do not have watched movies. Add them.”, 
+        // и удаляет класс активной кнопки у кнопки очереди просомотра и добавляет такой класс 
+        // кнопке просмотренных фильмов.
         return;
-    }
-    
+        }
     createLibraryCardFunc()
 }
