@@ -49,3 +49,16 @@ function activeDetailsPage (movieSelectedById, checkFlag) {
   refsNavigation.buttonNext.removeEventListener('click', plaginationNavigation);
   refsNavigation.buttonPrev.removeEventListener('click', plaginationNavigation);
 }
+refsNavigation.homeDom.addEventListener('click',((even) => {
+    console.log(even,`console.log(event.currentTarget.id,`)
+    activeHomePage();
+}));
+refsNavigation.logoDom.addEventListener('click',(() => {
+    activeHomePage();
+}));
+refsNavigation.libraryDom.addEventListener('click',(() => {
+    activeLibraryPage()
+}) )
+
+///for test unload activeHomePage
+activeHomePage()

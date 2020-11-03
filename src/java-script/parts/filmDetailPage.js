@@ -21,11 +21,11 @@ function monitorButtonStatusText() {
 };
 function toggleToQueue() {
     let filmsQueueArray = [];
-    const getlocalStorageFilmsQueueData = JSON.parse(localStorage.getItem('filmsQueue'));
-    if (getlocalStorageFilmsQueueData) {
-        filmsQueueArray.push(...getlocalStorageFilmsQueueData);
+    let getlocalStorageFilmsQueueData = localStorage.getItem('filmsQueue');
+    if (getlocalStorageFilmsQueueData !== null) {
+        filmsQueueArray.push(...JSON.parse(getlocalStorageFilmsQueueData));
     };
-    if (getlocalStorageFilmsQueueData && getlocalStorageFilmsQueueData.length && getlocalStorageFilmsQueueData.find(movie => movie.id === selectFilm.id)) {
+    if (filmsQueueArray.find(movie => movie.id === selectFilm.id)) {
         filmsQueueArray = filmsQueueArray.filter((movie => movie.id !== selectFilm.id));
     } else {
         filmsQueueArray.push(selectFilm);
@@ -35,11 +35,11 @@ function toggleToQueue() {
 };
 function toggleToWatched() {
     let filmsWatchedArray = [];
-    const getlocalStorageWatchedFilm = JSON.parse(localStorage.getItem('filmsWatched'));
+    let getlocalStorageWatchedFilm = localStorage.getItem('filmsWatched');
     if (getlocalStorageWatchedFilm) {
-        filmsWatchedArray.push(...getlocalStorageWatchedFilm);
+        filmsWatchedArray.push(...JSON.parse(getlocalStorageWatchedFilm));
     };
-    if (getlocalStorageWatchedFilm && getlocalStorageWatchedFilm.length && getlocalStorageWatchedFilm.find(movie => movie.id === selectFilm.id)) {
+    if (filmsWatchedArray.find(movie => movie.id === selectFilm.id)) {
         filmsWatchedArray = filmsWatchedArray.filter((movie => movie.id !== selectFilm.id));
     } else {
         filmsWatchedArray.push(selectFilm);

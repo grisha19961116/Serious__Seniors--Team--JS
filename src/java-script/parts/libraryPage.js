@@ -8,6 +8,7 @@ import {activeDetailsPage} from './navigation';
 const libraryFilmList = document.querySelector('.library__filmList');
 //функция сама примет данные из localStorage, классов для нее у меня пока нет они должны быть общими с createCards
 function createLibraryCardFunc(filmTitle, imgPath, movieId, voteAverage) {
+    
 //создает li согласно макета, вешает на нее слушателем функцию activeDetailsPage 
 //c параметрами movieId и флагом true вся эта функция возвращает созданный li
   const item = document.createElement('li');
@@ -26,7 +27,9 @@ function createLibraryCardFunc(filmTitle, imgPath, movieId, voteAverage) {
   voteFilm.textContent = voteAverage;
 
   item.append(img, movieName, voteFilm);
-  item.addEventListener('click', () => activeDetailsPage(movieId, true));
+
+  item.addEventListener('click', () => activeDetailsPage(movieId, true)); 
+    //  {fffff}
   return item;
 }
 
@@ -73,52 +76,3 @@ function drawQueueFilmList() {
         libraryFilmList.append(fragment)
     }
   }
-// Дальше, то что сделал ты, я не удалял, возможно пригодится.//
-
-// function createLibraryCardFunc() {
-//     // `масив(обектов)` принімає в параметри createLibraryCardFunc()  данні від Андрія
-//     const dataFromApi = variables.selectFilm;
-//     refsNavigation.homepageList.innerHTML = renderFilmsList ;
-//     const renderFilmsList = libraryPageGalleryTpl(variables.selectFilm);
-//     const homepageLi = document.querySelector('.homepage-list__li');
-//     // данні від Андрія , які користувач добавив через кнопки додати в чергу просмотрів і додати до списку (обєкт(масивів))
-//     homepageLi.addEventListener('click',((even) => {
-//     //   console.log(even,`event from createLibraryCardFunc in Romans section`);
-//       const idForSearching = Number(even.currentTarget.id);
-//       let movieId = [] ;
-//       console.log(idForSearching);
-//       dataFromApi.forEach(element => {
-//         if(element.id === idForSearching ) {
-//             movieId = [element];
-//           return;
-//         } 
-//       });
-//       // movieId (это масив с одним обектом) и флаг тру!!! передаєш вибраний кліком обєкт по айді!!!!
-//       activeDetailsPage(movieId,true);
-//     }));
-// }
-// function drawQueueFilmList() {    
-//     if(localStorage.getFilmsQueue === null){
-        
-//         refsNavigation.buttonFilmsWatched.classList.remove('library__btn--active');
-//         refsNavigation.buttonShowLIstQueue.classList.add('library__btn--active');
-//         // отрисовывает заглушку “You do not have watched movies. Add them.”, 
-//         // и удаляет класс активной кнопки у просмотренных фильмов и добавляет такой класс 
-//         // кнопке очереде просомотра.
-//         return;
-//     }
-//     createLibraryCardFunc();
-// }
-
-
-// function drawWatchedFilmList() {        
-//     if(localStorage.getWatchedFilm === null){
-//         refsNavigation.buttonShowLIstQueue.classList.remove('library__btn--active');
-//         refsNavigation.buttonFilmsWatched.classList.add('library__btn--active');
-//         // отрисовывает заглушку “You do not have watched movies. Add them.”, 
-//         // и удаляет класс активной кнопки у кнопки очереди просомотра и добавляет такой класс 
-//         // кнопке просмотренных фильмов.
-//         return;
-//         }
-//     createLibraryCardFunc()
-// }
