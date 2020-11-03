@@ -28,11 +28,13 @@ function fetchPopularMoviesList() {
     return res.json()
       })
       .then((data) => {
-        console.log(data,`fetchPopularMoviesList`)
+        console.log(data,`fetchPopularMoviesList  fffffffffffff`)
         if(data.results.length > 1){
           refsNavigation.homepageList.innerHTML = '';
+          console.log(data,`fetchPopularMoviesList  fffffffffffff if`)
         }
         variables.renderFilms = [...data.results];
+        console.log(variables.renderFilms,`variables.renderFilms fffff `)
         createCardFunc(variables.renderFilms);
     })
 }
