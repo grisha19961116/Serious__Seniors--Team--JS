@@ -46,12 +46,14 @@ function drawWatchedFilmList() {
       ));
       libraryFilmList.append(fragment);
     }else{
-        //это логика для заглушки, без модального окнна, но она еще не доработана.
+        libraryFilmList.innerHTML =""
         const noMoviesListNotation = document.createElement('li');
-        noMoviesListNotation.textContent = 'You do not have watched movies. Add them.'            
-        const fragment = document.createDocumentFragment()
-        fragment.append(noMoviesListNotation)
-        libraryFilmList.append(fragment)
+        if(noMoviesListNotation.textContent === ""){
+          noMoviesListNotation.textContent = 'You do not have watched movies. Add them.'
+          const fragment = document.createDocumentFragment()
+          fragment.append(noMoviesListNotation)
+          libraryFilmList.append(fragment)
+        }else return                  
     }    
   }
 function drawQueueFilmList() {
@@ -67,9 +69,8 @@ function drawQueueFilmList() {
       ));
       libraryFilmList.append(fragment);
     }else{
-        //это логика для заглушки, без модального окнна, но она еще не доработана.
-        const noMoviesListNotation = document.createElement('li');
-        //  
+        libraryFilmList.innerHTML =""
+        const noMoviesListNotation = document.createElement('li'); 
         if(noMoviesListNotation.textContent === ""){
           noMoviesListNotation.textContent = 'You do not have to queue movies to watch. Add them.'
           const fragment = document.createDocumentFragment()
