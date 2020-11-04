@@ -36,15 +36,15 @@ function createLibraryCardFunc(filmTitle, imgPath, movieId, voteAverage) {
 function drawWatchedFilmList() {
 // если значение local не пустое и не равно нулю длина массива то проходим по нему
 // и в созданный fragment в цикле запускаем функцию createLibraryCardFunc() которая создает нужные li
-    buttonWatch.classList.add('library__btn--active');
-    buttonQueue.classList.remove('library__btn--active');
+    refsNavigation.buttonFilmsWatched.classList.add('library__btn--active');
+    refsNavigation.buttonShowLIstQueue.classList.remove('library__btn--active');
     let fragment = document.createDocumentFragment();
-    const local = JSON.parse(localStorage.getItem('filmsWatched'));//можно заменить local на getWatchedFilm, но не уверен
+    // const local = JSON.parse(localStorage.getItem('filmsWatched'));//можно заменить local на getWatchedFilm, но не уверен
     if(localStorage.getWatchedFilm !== null){ ///нужно добавить проверку на длинну масива
-        local.foreach(el => fragment.append(
+      getWatchedFilm.foreach(el => fragment.append(
         createLibraryCardFunc(el.title, el.backdrop_path, el.id, el.vote_average),
       ));
-    myLibrary.append(fragment);
+      libraryFilmList.append(fragment);
     }else{
         //это логика для заглушки, без модального окнна, но она еще не доработана.
         const noMoviesListNotation = document.createElement('li');
@@ -57,22 +57,24 @@ function drawWatchedFilmList() {
 function drawQueueFilmList() {
 // если значение local не пустое и не равно нулю длина массива то проходим по нему
 // и в созданный fragment в цикле запускаем функцию createLibraryCardFunc() которая создает нужные li   
-    buttonWatch.classList.remove('library__btn--active');
-    buttonQueue.classList.add('library__btn--active');  
-    const local = JSON.parse(localStorage.getItem('filmsQueue'));//можно заменить local на getWatchedFilm, но не уверен
+    refsNavigation.buttonFilmsWatched.classList.remove('library__btn--active');
+    refsNavigation.buttonShowLIstQueue.classList.add('library__btn--active');  
+    // const local = JSON.parse(localStorage.getItem('filmsQueue'));//можно заменить local на getWatchedFilm, но не уверен
     let fragment = document.createDocumentFragment();
     if(localStorage.getFilmsQueue !== null){
-        local.foreach(el => fragment.append(
+      getFilmsQueue.foreach(el => fragment.append(
         createLibraryCardFunc(el.title, el.backdrop_path, el.id, el.vote_average),
       ));
-    myLibrary.append(fragment);
+      libraryFilmList.append(fragment);
     }else{
         //это логика для заглушки, без модального окнна, но она еще не доработана.
         const noMoviesListNotation = document.createElement('li');
-        noMoviesListNotation.textContent = ""        
-        noMoviesListNotation.textContent = 'You do not have to queue movies to watch. Add them.'            
-        const fragment = document.createDocumentFragment()
-        fragment.append(noMoviesListNotation)
-        libraryFilmList.append(fragment)
-    }
+        //  
+        if(noMoviesListNotation.textContent === ""){
+          noMoviesListNotation.textContent = 'You do not have to queue movies to watch. Add them.'
+          const fragment = document.createDocumentFragment()
+          fragment.append(noMoviesListNotation)
+          libraryFilmList.append(fragment)
+        }else return                  
+      }
   }
