@@ -1,10 +1,10 @@
 export  { activeHomePage, activeLibraryPage, activeDetailsPage} ;
-import refsNavigation from '../refsNavigation';
-import {plaginationNavigation} from './searchAndPlaginationHomePage'
-import variables from '../variables';
-import localStorage from '../localStorageSettings';
-import  {drawQueueFilmList} from './libraryPage';
-import {drawWatchedFilmList} from './libraryPage';
+import refsNavigation from '../refsNavigation.js';
+import {plaginationNavigation} from './searchAndPlaginationHomePage.js'
+import variables from '../variables.js';
+import localStorage from '../localStorageSettings.js';
+import  {drawQueueFilmList} from './libraryPage.js';
+import {drawWatchedFilmList} from './libraryPage.js';
 import {showDetails,toggleToQueue,toggleToWatched} from './filmDetailPage.js';
 refsNavigation.filmDetailPageSection.classList.add('hidden');
 refsNavigation.filmLibraryPageSection.classList.add('hidden');
@@ -16,8 +16,8 @@ function activeHomePage () {
   refsNavigation.buttonPrev.addEventListener('click',plaginationNavigation);
   refsNavigation.buttonFilmsWatched.removeEventListener('click', drawWatchedFilmList);
   refsNavigation.buttonShowLIstQueue.removeEventListener('click', drawQueueFilmList);
-  refsNavigation.buttonAddFilmToWatched.removeEventListener('click', toggleToWatched);
-  refsNavigation.buttonAddFilmToQueue.removeEventListener('click', toggleToQueue);
+  refsNavigation.buttonAddFilmToWatched.removeEventListener('click', toggleToWatched);  // закоментил, так как идет ошибка)
+  refsNavigation.buttonAddFilmToQueue.removeEventListener('click', toggleToQueue);      // закоментил, так как идет ошибка)
 }
 function activeLibraryPage () {
   refsNavigation.filmDetailPageSection.classList.add('hidden');
@@ -59,6 +59,5 @@ refsNavigation.logoDom.addEventListener('click',(() => {
 refsNavigation.libraryDom.addEventListener('click',(() => {
     activeLibraryPage()
 }) )
-
 ///for test unload activeHomePage
-activeHomePage()
+document.addEventListener('DOMContentLoaded',activeHomePage)
