@@ -127,20 +127,21 @@ function activeDetailsPage (movieSelectedById,checkFlag) {
      // - на логотип повесить запуск функции activeHomePage, чтобы при клике туда возвращаться.
 }
 
-function activeDetailsPage (movieSelectedById,checkFlag) {
+function activeDetailsPage(movieSelectedById, checkFlag) {
     // - пишем функцию showDetails которая принимает параметром selectFilm 
     // (глобальная переменная - объект, которая создана в задаче номер три)
     //  и рендерит всю разметку согласно макета, в этой функции запускается функция
     refsNavigation.homePageSection.classList.add('hidden');
     refsNavigation.filmLibraryPageSection.classList.add('hidden');
-    if(checkFlag){
+    if (checkFlag) {
         const requestWatchedFilmsFromLocStor = [];//get array from local, from library(flag true)
         // and findBy(movieSelectedById) and find it in (get array from local) and inseart it in variables.selectFilm;;
     } else {
-         // зсилаюсь на вар рендер філмс який запис при запросі першому
-         // variables.selectFilm = variables.renderFilms and search 'movieSelectedById' in (variables.renderFilms)
-        }
-        showDetails(movieSelectedById);  /// variables.selectFilmпередаємо Андрійж
-        // refsNavigation.buttonAddFilmToQueue.addEventListener('click',((even) => {
-        //     refsNavigation.buttonAddFilmToWatched.classList.remove('js-btn-watched--active');
-        //     refsNavigation.buttonAddFilmToWatched.textContent = 'Add to watched';
+        // зсилаюсь на вар рендер філмс який запис при запросі першому
+        // variables.selectFilm = variables.renderFilms and search 'movieSelectedById' in (variables.renderFilms)
+    }
+    showDetails(movieSelectedById);  /// variables.selectFilmпередаємо Андрійж
+    // refsNavigation.buttonAddFilmToQueue.addEventListener('click',((even) => {
+    //     refsNavigation.buttonAddFilmToWatched.classList.remove('js-btn-watched--active');
+    //     refsNavigation.buttonAddFilmToWatched.textContent = 'Add to watched';
+
