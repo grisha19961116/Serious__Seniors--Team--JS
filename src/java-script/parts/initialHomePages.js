@@ -1,25 +1,25 @@
+export {fetchPopularMoviesList, createCardFunc, fetchGenres};
 import homepageGalleryTpl from '../templates/homepage-gallery.hbs';
-import refsNavigation from '../refsNavigation';
-import {activeDetailsPage} from './navigation';
-import variables from '../variables';
-export function createCardFunc(renderFilms) {
+import refsNavigation from '../refsNavigation.js';
+import {activeDetailsPage} from './navigation.js';
+import variables from '../variables.js';
+
+
+function createCardFunc(renderFilms) {
   const renderFilmsList = homepageGalleryTpl(renderFilms);
   refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);
-  const homepageLi = document.querySelector('.homepage-list__li');
-  homepageLi.addEventListener('click',((even) => {
-    const idForSearching = Number(even.currentTarget.id);
-    let forThrowDataSelect ;
-    console.log(idForSearching);
+  refsNavigation.homepageList.addEventListener('click',((even) => {
 
-    renderFilms.forEach(element => {
-      if(element.id === idForSearching ) {
-        forThrowDataSelect = element;
-        return;
-      }
-
-    });
-    console.log(forThrowDataSelect,`forThrowDataSelect ffffffffffffffffffff`);
-    activeDetailsPage(forThrowDataSelect,false);
+    if(even.target.tagName !== "IMG") return;
+      const idForSearching = Number(even.target.id);
+      let forThrowDataSelect ;
+      renderFilms.find(element => {
+        if(element.id === idForSearching ) {
+          forThrowDataSelect = element.id;
+          return;
+        }
+      });
+      activeDetailsPage(forThrowDataSelect,false);
   }));
 }
 function fetchPopularMoviesList() {
@@ -28,17 +28,13 @@ function fetchPopularMoviesList() {
     return res.json()
       })
       .then((data) => {
-        console.log(data,`fetchPopularMoviesList  fffffffffffff`)
         if(data.results.length > 1){
           refsNavigation.homepageList.innerHTML = '';
-          console.log(data,`fetchPopularMoviesList  fffffffffffff if`)
         }
         variables.renderFilms = [...data.results];
-        console.log(variables.renderFilms,`variables.renderFilms fffff `)
         createCardFunc(variables.renderFilms);
     })
 }
-
 function fetchGenres() {
   fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=f2c0383f553427336b1984c7194d50ac&language=en-US`)
     .then(res => res.json())
@@ -46,8 +42,4 @@ function fetchGenres() {
     .catch(err => console.log(err));
 }
 fetchPopularMoviesList();
-
 fetchGenres();
-
-
-

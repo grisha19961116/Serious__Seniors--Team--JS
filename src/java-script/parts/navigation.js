@@ -1,13 +1,16 @@
 export  { activeHomePage, activeLibraryPage, activeDetailsPage} ;
-import refsNavigation from '../refsNavigation';
-import {plaginationNavigation} from './searchAndPlaginationHomePage'
-import variables from '../variables';
-import localStorage from '../localStorageSettings';
-import  {drawQueueFilmList} from './libraryPage';
-import {drawWatchedFilmList} from './libraryPage';
+import refsNavigation from '../refsNavigation.js';
+import {plaginationNavigation} from './searchAndPlaginationHomePage.js'
+import variables from '../variables.js';
+import  {drawQueueFilmList} from './libraryPage.js';
+import {drawWatchedFilmList} from './libraryPage.js';
 import {showDetails,toggleToQueue,toggleToWatched} from './filmDetailPage.js';
+
+
 refsNavigation.filmDetailPageSection.classList.add('hidden');
 refsNavigation.filmLibraryPageSection.classList.add('hidden');
+
+
 function activeHomePage () {
   refsNavigation.filmDetailPageSection.classList.add('hidden');
   refsNavigation.filmLibraryPageSection.classList.add('hidden');
@@ -17,7 +20,7 @@ function activeHomePage () {
   refsNavigation.buttonFilmsWatched.removeEventListener('click', drawWatchedFilmList);
   refsNavigation.buttonShowLIstQueue.removeEventListener('click', drawQueueFilmList);
   refsNavigation.buttonAddFilmToWatched.removeEventListener('click', toggleToWatched);
-  refsNavigation.buttonAddFilmToQueue.removeEventListener('click', toggleToQueue);
+  refsNavigation.buttonAddFilmToQueue.removeEventListener('click', toggleToQueue);      
 }
 function activeLibraryPage () {
   refsNavigation.filmDetailPageSection.classList.add('hidden');
@@ -37,9 +40,9 @@ function activeDetailsPage (movieSelectedById, checkFlag) {
   refsNavigation.filmDetailPageSection.classList.remove('hidden');
   if(checkFlag){
     let queueAndWatchedFilmListFromLS = [...JSON.parse(localStorage.getItem('filmsQueue')), ...JSON.parse(localStorage.getItem('filmsWatched'))];
-    variables.selectFilm = queueAndWatchedFilmListFromLS.find(el => el === movieSelectedById);
+    variables.selectFilm = queueAndWatchedFilmListFromLS.find(el => el.id === movieSelectedById);
     } else {
-    variables.selectFilm = variables.renderFilms.find(el => el === movieSelectedById);
+    variables.selectFilm = variables.renderFilms.find(el => el.id === movieSelectedById);
   }
   showDetails(variables.selectFilm);
   refsNavigation.buttonAddFilmToQueue.addEventListener('click', toggleToQueue);
@@ -49,16 +52,9 @@ function activeDetailsPage (movieSelectedById, checkFlag) {
   refsNavigation.buttonNext.removeEventListener('click', plaginationNavigation);
   refsNavigation.buttonPrev.removeEventListener('click', plaginationNavigation);
 }
-refsNavigation.homeDom.addEventListener('click',((even) => {
-    console.log(even,`console.log(event.currentTarget.id,`)
-    activeHomePage();
-}));
-refsNavigation.logoDom.addEventListener('click',(() => {
-    activeHomePage();
-}));
-refsNavigation.libraryDom.addEventListener('click',(() => {
-    activeLibraryPage()
-}) )
 
-///for test unload activeHomePage
-activeHomePage()
+refsNavigation.homeDom.addEventListener('click', activeHomePage);
+refsNavigation.logoDom.addEventListener('click', activeHomePage);
+refsNavigation.libraryDom.addEventListener('click', activeLibraryPage);
+
+document.addEventListener('DOMContentLoaded', activeHomePage);
