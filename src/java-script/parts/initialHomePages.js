@@ -5,23 +5,18 @@ import {activeDetailsPage} from './navigation.js';
 import variables from '../variables.js';
 function createCardFunc(renderFilms) {
   const renderFilmsList = homepageGalleryTpl(renderFilms);
-  refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);//ul
-  // const homepageLi = document.querySelector('ul>.homepage-list__li');
+  refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);
   refsNavigation.homepageList.addEventListener('click',((even) => {
-    console.log(even.target,`homepageLi`);
-    if(even.target.tagName === "IMG"){
+    if(even.target.tagName !== "IMG") return;
       const idForSearching = Number(even.target.id);
       let forThrowDataSelect ;
-      console.log(idForSearching);
-      renderFilms.forEach(element => {
+      renderFilms.find(element => {
         if(element.id === idForSearching ) {
-          forThrowDataSelect = element;
+          forThrowDataSelect = element.id;
           return;
         }
       });
-      console.log(forThrowDataSelect,`forThrowDataSelect ffffffffffffffffffff`);
       activeDetailsPage(forThrowDataSelect,false);
-    }
   }));
 }
 function fetchPopularMoviesList() {

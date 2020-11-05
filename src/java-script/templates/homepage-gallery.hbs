@@ -1,10 +1,8 @@
 {{#each this}}
 <li class="homepage-list__li" id = {{this.id}}>
     <div class="homepage-list__poster">
-        <img src="https://image.tmdb.org/t/p/w1280{{this.backdrop_path}}" id = {{this.id}}  alt="MOVIE ID :{{this.id}}" width="1320" height="540" />
+        <img src="https://image.tmdb.org/t/p/w1280{{this.backdrop_path}}" id = {{this.id}} alt="MOVIE ID :{{this.id}}" width="320" height="240" />
     </div>
     <p class="homepage-list__moviename">{{this.original_title}}</p>
 </li>
 {{/each}}
-
-

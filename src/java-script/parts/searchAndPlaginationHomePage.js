@@ -20,8 +20,7 @@ function fetchFilms() {
           'search-form__error--visibale',
         );
         variables.pageNumber = 1;
-        fetchPopularMovies();
-        return;
+        fetchPopularMoviesList();
       } else {
         refsNavigation.homepageList.innerHTML = '';
         variables.renderFilms = [...dataFromApi.results];
