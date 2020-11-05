@@ -1,8 +1,6 @@
 import refsNavigation from '../refsNavigation';
 import { activeDetailsPage } from './navigation';
-
 const libraryFilmList = document.querySelector('.library__filmList');
-
 function createLibraryCardFunc(filmTitle, imgPath, movieId, voteAverage) {
   const item = document.createElement('li');
   item.classList.add('some_class'); ///нужно добавить тот же класс на li, что и в функции createCards

@@ -2,7 +2,6 @@ import apiService from '../apiService.js';
 import refsNavigation from '../refsNavigation.js';
 import variables from '../variables.js';
 import { fetchPopularMoviesList, createCardFunc } from './initialHomePages.js';
-
 function fetchFilms() {
   if (variables.inputValue === '') {
     console.log(
@@ -30,16 +29,13 @@ function fetchFilms() {
     })
     .catch(apiError => console.error(apiError));
 }
-
 function searchFilms(event) {
   event.preventDefault();
   variables.inputValue = refsNavigation.inputFormDom.value.trim();
   refsNavigation.searchFormDom.reset();
   fetchFilms();
 }
-
 refsNavigation.searchFormDom.addEventListener('submit', searchFilms);
-
 export function plaginationNavigation(event) {
   const findById = event.currentTarget.id;
   if (findById === 'next') {
