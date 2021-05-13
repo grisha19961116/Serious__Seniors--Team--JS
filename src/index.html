@@ -39,33 +39,25 @@
 
 
   <!-- homePage(2 участник-Константин) -->
-  <section class="homePage movies-wrap">
-    <div class="homePage__search">
-      <div class="search container form-wrap">
+  <section class="container homePage movies-wrap">
+    <div class="container homePage__search">
+      <div class="search form-wrap">
         <form class="search__form">
-          <button class="search__btn" type="submit"></button>
-          <input class="search__film" atribu type="search" placeholder="Write movie name and click Enter" />
+          <label class="search__form_label" for="before"></label>
+          <input class="search__film" atribu type="search" placeholder="Write movie name and click Enter"/>
         </form>
-        <p class="search-form__error search-form__error--hidden">
+        <p class="search-form__error hidden">
           The movie name was entered incorrectly! Please try again.
         </p>
       </div>
     </div>
-    <!-- <div id="loader"></div> -->
-    <div class="container animate-bottom" id="myDiv">
-      <!-- <div class="listMovie">
-        <div class="listMovie__item" data-type="playing">Now playing</div>
-        <div class="listMovie__item" data-type="popular">Popular</div>
-        <div class="listMovie__item" data-type="top">Top rated</div>
-        <div class="listMovie__item" data-type="upcoming">Upcoming</div>
-      </div> -->
+    <div class="animate-bottom" id="myDiv">
       <ul class="list-render js-list-render" data-page="home"></ul>
-      <!-- li 1 участника??? -->
       <div class="homePage__navBtn">
         <div class="homePage__btns">
-          <button class="homePage__btnsAdd js-btn-prev hidden" id="prev">Prev</button>
-          <button class="homePage__btnsAdd page-number">1</button>
-          <button class="homePage__btnsAdd js-btn-next" id="next">Next</button>
+          <button class="homePage__btnsPrev js-btn-prev hidden" id="prev">Prev</button>
+          <button class="homePage__btnsPage page-number">1</button>
+          <button class="homePage__btnsNext js-btn-next" id="next">Next</button>
         </div>
       </div>
     </div>
@@ -78,9 +70,9 @@
     <div class="film-details__wrapper-item film-details__wrapper-item--buttons">
       <button class="btn__film-details btn-watched js-btn-watched"></button>
       <button class="btn__film-details btn-queue js-btn-queue"></button>
-  </div>
+    </div>
   </section>
-  <!-- SECTION FILM-DETAIL-PAGE END -->  
+  <!-- SECTION FILM-DETAIL-PAGE END -->
 
   </main>
 

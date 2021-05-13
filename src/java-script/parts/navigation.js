@@ -5,8 +5,12 @@ import variables from '../variables.js';
 import  {drawQueueFilmList} from './libraryPage.js';
 import {drawWatchedFilmList} from './libraryPage.js';
 import {showDetails,toggleToQueue,toggleToWatched} from './filmDetailPage.js';
+
+
 refsNavigation.filmDetailPageSection.classList.add('hidden');
 refsNavigation.filmLibraryPageSection.classList.add('hidden');
+
+
 function activeHomePage () {
   refsNavigation.filmDetailPageSection.classList.add('hidden');
   refsNavigation.filmLibraryPageSection.classList.add('hidden');
@@ -48,7 +52,9 @@ function activeDetailsPage (movieSelectedById, checkFlag) {
   refsNavigation.buttonNext.removeEventListener('click', plaginationNavigation);
   refsNavigation.buttonPrev.removeEventListener('click', plaginationNavigation);
 }
+
 refsNavigation.homeDom.addEventListener('click', activeHomePage);
 refsNavigation.logoDom.addEventListener('click', activeHomePage);
 refsNavigation.libraryDom.addEventListener('click', activeLibraryPage);
+
 document.addEventListener('DOMContentLoaded', activeHomePage);

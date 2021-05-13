@@ -8,7 +8,6 @@ export default {
     return res.json()
       })
       .then((data) => {
-        console.log('Data: from apiService getFullRequest', data);
         return data;
     })
     },

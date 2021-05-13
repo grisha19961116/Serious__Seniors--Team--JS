@@ -3,10 +3,13 @@ import homepageGalleryTpl from '../templates/homepage-gallery.hbs';
 import refsNavigation from '../refsNavigation.js';
 import {activeDetailsPage} from './navigation.js';
 import variables from '../variables.js';
+
+
 function createCardFunc(renderFilms) {
   const renderFilmsList = homepageGalleryTpl(renderFilms);
   refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);
   refsNavigation.homepageList.addEventListener('click',((even) => {
+
     if(even.target.tagName !== "IMG") return;
       const idForSearching = Number(even.target.id);
       let forThrowDataSelect ;
