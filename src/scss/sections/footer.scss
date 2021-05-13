@@ -1,0 +1,27 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 85px;
+  background-color: #77c1bb;
+}
+
+.creators {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: rgba(55, 44, 72, 1);
+  line-height: 1;
+}
+
+@media (min-width: 767px) {
+  .footer {
+    height: 87px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    height: 89px;
+  }
+}

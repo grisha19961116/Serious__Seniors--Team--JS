@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Serious__Seniors--Team--JS</title>
+</head>
+
+<body>
+  <!-- //Header// -->
+  <nav class="navigation__menu">
+    <div class="navigation__left-side navigation-link">
+      <a class="navigation__logo-link navigation-link" href="#">
+        <img class="logo__img" src="./images/logo.png" alt="Logo">
+      </a>
+      <a class="logo__link navigation-link" href="#">Filmoteka</a>
+    </div>
+    <div class="navigation__right-side link-rapper">
+      <a class="after navigation-link home-link" href="#">HOME</a>
+      <a class="after navigation-link library-link" href="#">MY LIBRARY</a>
+    </div>
+  </nav>
+  <!-- ///Header// -->
+  <!-- Начало раздела labraryPage OOOO-->
+  <section class="myFilmLibraryPage__section" id="myFilmLibraryPage__section">
+    <div class="library-btns">
+      <button id="js-buttonWatchedFilms" class="btn library__btn library__btn--watch library__btn--active ">
+        Watched
+      </button>
+      <button id="js-buttonQueueFilms" class="btn library__btn library__btn--queue ">
+        Queue
+      </button>
+    </div>
+    <ul class="library-list library__filmList library__list--wached"></ul>
+  </section>
+  <!-- Конец раздела labraryPage -->
+
+
+  <!-- homePage(2 участник-Константин) -->
+  <section class="container homePage movies-wrap">
+    <div class="container homePage__search">
+      <div class="search form-wrap">
+        <form class="search__form">
+          <label class="search__form_label" for="before"></label>
+          <input class="search__film" atribu type="search" placeholder="Write movie name and click Enter"/>
+        </form>
+        <p class="search-form__error hidden">
+          The movie name was entered incorrectly! Please try again.
+        </p>
+      </div>
+    </div>
+    <div class="animate-bottom" id="myDiv">
+      <ul class="list-render js-list-render" data-page="home"></ul>
+      <div class="homePage__navBtn">
+        <div class="homePage__btns">
+          <button class="homePage__btnsPrev js-btn-prev hidden" id="prev">Prev</button>
+          <button class="homePage__btnsPage page-number">1</button>
+          <button class="homePage__btnsNext js-btn-next" id="next">Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END homePage(2 участник) END-->
+
+  <!-- SECTION FILM-DETAILS-PAGE START -->
+  <section class="film-details-page js-film-details-page">
+    <div class="film-details-page-hbs"></div>
+    <div class="film-details__wrapper-item film-details__wrapper-item--buttons">
+      <button class="btn__film-details btn-watched js-btn-watched"></button>
+      <button class="btn__film-details btn-queue js-btn-queue"></button>
+    </div>
+  </section>
+  <!-- SECTION FILM-DETAIL-PAGE END -->
+
+  </main>
+
+  <!-- //Footer// -->
+  <footer class="footer">
+    <p class="creators">Made by Serious__Seniors--Team</p>
+  </footer>
+  <!-- //Footer// -->
+</body>
+
+</html>

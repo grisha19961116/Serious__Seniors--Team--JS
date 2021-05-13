@@ -1,0 +1,35 @@
+<div class="film-details-page__wrapper container">
+    <div class="film-details__img-box">
+        <img class="film-details__img" src="https://image.tmdb.org/t/p/original{{backdrop_path}}" alt="{{title}}" width="320" height="240">
+    </div>
+    <div class="film-details__wrapper">
+        <div class="film-details__wrapper-item film-details__wrapper-item--film">
+            <h2 class="film-details__title">
+                {{title}}
+                <span class="film-details__year">({{release_date}})</span>
+            </h2>
+            <ul class="film-details__list">
+                <li class="film-details__item film-details__item--color">
+                    <span class="film-details__vote">{{vote_average}} /</span>
+                    <span class="film-details__votes">{{vote_count}}</span>
+                </li>
+                <li class="film-details__item">
+                    <span class="film-details__popularity">{{popularity}}</span>
+                </li>
+                <li class="film-details__item film-details__item--color">
+                    <span class="film-details__original-title">{{original_title}}</span>
+                </li>
+                <li class="film-details__item">
+                    <span class="film-details__genre">
+                        {{#each genres}}
+                        <span class="film-details__genre">{{this.name}}</span>
+                        {{/each}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="film-details__wrapper-item film-details__wrapper-item--about">
+            <h3 class="film-details__title">About</h3>
+            <p class="film-details__description">{{overview}}</p>
+        </div>
+    </div>
+</div>
