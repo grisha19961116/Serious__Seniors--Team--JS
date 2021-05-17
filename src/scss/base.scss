@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: inherit;
 }
+body {
+  display: flex;
+  flex-direction: column;
+}
 
 ul,
 li {
@@ -10,5 +14,5 @@ li {
 }
 
 .hidden {
-    display: none;
-  }
+  display: none;
+}

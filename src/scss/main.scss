@@ -1,20 +1,13 @@
-/*
- * Все паршалы импортировать в этот файл
- */
 @import 'normalize.scss';
 @import 'base.scss';
-// @import 'base-font.scss';
-// //   для базових стилів
+
 @import './helpers/variables.scss';
 @import './helpers/mixins-functions.scss';
 @import './helpers/animations.scss';
 @import './helpers/animate.scss';
-//   для переміних,ф-й,анімацій і тд...
 
 @import './sections/header.scss';
 @import './sections/myFilmLibraryPage.scss';
 @import './sections/detailsPage.scss';
 @import './sections/footer.scss';
-
-//   для підключеня стилів секцій!!!
 @import './sections/homePage.scss';

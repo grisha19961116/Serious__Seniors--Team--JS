@@ -1,11 +1,10 @@
 .navigation__menu {
   text-align: center;
-  height: 66px;
+  height: 7vh;
   background-color: #77c1bb;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 12px;
 }
 
 .navigation-link {
@@ -51,11 +50,6 @@ a {
 }
 
 @media (min-width: 767px) {
-  .navigation__menu {
-    justify-content: space-between;
-    padding: 0px 30px;
-  }
-
   .logo__link {
     display: inline;
     font-family: 'Roboto', sans-serif;
