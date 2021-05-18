@@ -1,7 +1,8 @@
 export default {
-     selectFilm : null,
-     renderFilms : null,
-     genres : null,
-     pageNumber : 1,
-     inputValue : '',
-}
+  selectFilm: null,
+  renderFilms: null,
+  genres: null,
+  pageNumber: 1,
+  inputValue: '',
+  total: null,
+};

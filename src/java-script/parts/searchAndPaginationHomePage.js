@@ -24,7 +24,8 @@ function fetchFilms() {
       } else {
         refsNavigation.homepageList.innerHTML = '';
         variables.renderFilms = [...dataFromApi.results];
-        createCardFunc(variables.renderFilms);
+        variables.total = dataFromApi.total_pages;
+        createCardFunc(variables.renderFilms, variables.total);
       }
     })
     .catch(apiError => console.error(apiError));
@@ -39,22 +40,23 @@ function searchFilms(event) {
 
 refsNavigation.searchFormDom.addEventListener('submit', searchFilms);
 
-export function plaginationNavigation(event) {
-  const findById = event.currentTarget.id;
-  if (findById === 'next') {
-    variables.pageNumber += 1;
-    refsNavigation.buttonPrev.classList.remove('hidden');
-    refsNavigation.buttonNumber.textContent = variables.pageNumber;
-  } else if (findById === 'prev') {
-    variables.pageNumber -= 1;
-    refsNavigation.buttonNumber.textContent = variables.pageNumber;
-  }
-  if (variables.pageNumber <= 1) {
-    refsNavigation.buttonPrev.classList.add('hidden');
-  }
-  if (variables.inputValue === '') {
-    fetchPopularMoviesList();
-  } else {
-    fetchFilms();
-  }
+export function paginationNavigation(event) {
+  const findById = event.currentTarget;
+  console.log(findById);
+  // if (findById === 'next') {
+  //   variables.pageNumber += 1;
+  //   refsNavigation.buttonPrev.classList.remove('hidden');
+  //   refsNavigation.buttonNumber.textContent = variables.pageNumber;
+  // } else if (findById === 'prev') {
+  //   variables.pageNumber -= 1;
+  //   refsNavigation.buttonNumber.textContent = variables.pageNumber;
+  // }
+  // if (variables.pageNumber <= 1) {
+  //   refsNavigation.buttonPrev.classList.add('hidden');
+  // }
+  // if (variables.inputValue === '') {
+  //   fetchPopularMoviesList();
+  // } else {
+  //   fetchFilms();
+  // }
 }
