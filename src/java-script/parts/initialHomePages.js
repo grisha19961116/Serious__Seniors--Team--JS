@@ -4,33 +4,26 @@ import refsNavigation from '../refsNavigation.js';
 import { activeDetailsPage } from './navigation.js';
 import variables from '../variables.js';
 
+let checkRender = false;
+
 function createCardFunc(renderFilms, total) {
   const ulPagination = document.querySelector('.pagination-list');
-  const handlePagination = e => {
-    console.log(e);
-  };
-  if (total >= 7) {
-    ulPagination.innerHTML = '';
+
+  if (!checkRender) {
+    checkRender = true;
     for (let i = 1; i < 8; i += 1) {
       const liPagination = document.createElement('li');
       liPagination.id = i;
       liPagination.textContent = i;
-      ulPagination.append(liPagination);
-    }
-    ulPagination.addEventListener('click', handlePagination);
-  } else if (total < 7) {
-    ulPagination.innerHTML = '';
-    for (let i = 1; i < total + 1; i += 1) {
-      const liPagination = document.createElement('li');
-      liPagination.id = i;
-      liPagination.textContent = i;
+      liPagination.classList.add('pagination-list__li');
+      if (i === 1) {
+        liPagination.classList.add('pagination-list__li--active');
+      }
       ulPagination.append(liPagination);
     }
   }
 
   refsNavigation.homePageBtn.append(ulPagination);
-
-  console.log(ulPagination);
 
   const renderFilmsList = homepageGalleryTpl(renderFilms);
   refsNavigation.homepageList.insertAdjacentHTML('beforeend', renderFilmsList);

@@ -17,8 +17,8 @@ function activeHomePage() {
   refsNavigation.filmLibraryPageSection.classList.add('hidden');
   refsNavigation.homePageSection.classList.remove('hidden');
 
-  refsNavigation.buttonNext.addEventListener('click', paginationNavigation);
-  refsNavigation.buttonPrev.addEventListener('click', paginationNavigation);
+  refsNavigation.homePageBtn.addEventListener('click', paginationNavigation);
+
   refsNavigation.buttonFilmsWatched.removeEventListener(
     'click',
     drawWatchedFilmList,
@@ -57,8 +57,7 @@ function activeLibraryPage() {
     'click',
     toggleToQueue,
   );
-  refsNavigation.buttonNext.removeEventListener('click', paginationNavigation);
-  refsNavigation.buttonPrev.removeEventListener('click', paginationNavigation);
+  refsNavigation.homePageBtn.removeEventListener('click', paginationNavigation);
 }
 function activeDetailsPage(movieSelectedById, checkFlag) {
   refsNavigation.homePageSection.classList.add('hidden');
@@ -91,8 +90,7 @@ function activeDetailsPage(movieSelectedById, checkFlag) {
     'click',
     drawWatchedFilmList,
   );
-  refsNavigation.buttonNext.removeEventListener('click', paginationNavigation);
-  refsNavigation.buttonPrev.removeEventListener('click', paginationNavigation);
+  refsNavigation.homePageBtn.removeEventListener('click', paginationNavigation);
 }
 
 refsNavigation.homeDom.addEventListener('click', activeHomePage);
