@@ -1,4 +1,4 @@
-import { Object } from 'core-js';
+import { Number, Object } from 'core-js';
 import apiService from '../apiService.js';
 import refsNavigation from '../refsNavigation.js';
 import variables from '../variables.js';
@@ -48,10 +48,6 @@ export function paginationNavigation(event) {
   let elementsLi = document.querySelectorAll('.pagination-list__li');
   elementsLi = Object.values(elementsLi);
 
-  if (variables.total <= increase) {
-    return console.log(`variables.total < increase`);
-  }
-
   if (Number(findById) === 1) {
     elementsLi.map((el, i) => {
       el.classList.contains('pagination-list__li--active') &&
@@ -66,55 +62,114 @@ export function paginationNavigation(event) {
   }
 
   if (Number(findById) > 1) {
+    if (increase <= 7) {
+      increase = Number(findById);
+    }
+    if (increase > 7) {
+      increase = increase + 1;
+    }
+
+    variables.pageNumber = increase;
+
+    console.log(
+      variables.pageNumber,
+      `variables.pageNumber Number(findById) > 1`,
+    );
+    console.log(increase, `Number(findById) > 1`);
+
     elementsLi.map((el, i) => {
       el.classList.contains('pagination-list__li--active') &&
         el.classList.remove('pagination-list__li--active');
 
-      if (Number(findById) % 7 == 0 && i === 0) {
-        el.classList.add('pagination-list__li--active');
-        el.textContent = Number(findById) + increase + i + 1;
-        increase = Number(findById) + increase + i + 1;
+      if (Number(findById) % 7 == 0) {
+        if (increase % 7 == 0 && i === 6) {
+          el.classList.add('pagination-list__li--active');
+          el.textContent = increase;
+          return;
+        }
+
+        if (increase % 7 != 0) {
+          if (increase < 7) {
+            el.textContent = i + 1;
+          }
+          if (increase >= 7) {
+            console.log(increase, `errrr`);
+          }
+
+          if (Number(findById) === i + 1) {
+            el.classList.add('pagination-list__li--active');
+          }
+          return;
+        }
+
         return;
       }
 
       increase === 0 && (el.textContent = i + 1);
-
-      if (increase !== 0) {
-        if (Number(findById) === i + 1 && Number(findById) % 7 != 0) {
+      if (increase % 7 != 0) {
+        if (Number(findById) === i + 1) {
+          increase = Number(el.textContent);
           el.classList.add('pagination-list__li--active');
         }
-        // increase = increase + 1;
-        el.textContent = increase + i + 1;
-        return;
-      }
 
-      if (i + 1 === Number(findById)) {
-        el.classList.add('pagination-list__li--active');
+        return;
       }
     });
     refsNavigation.buttonPrev.classList.remove('hidden');
-    variables.pageNumber = Number(findById);
   }
 
   if (findById === 'next') {
-    increase = increase + 1;
-    const newLiById = document.getElementById(increase);
     if (increase === 0) {
-      const prevLiById = document.getElementById('1');
-      prevLiById.classList.remove('pagination-list__li--active');
-      newLiById.classList.add('pagination-list__li--active');
+      variables.pageNumber = 1;
+      increase = variables.pageNumber;
+    }
+    console.log(
+      variables.pageNumber,
+      `variables.pageNumber findById === 'next'`,
+    );
+    console.log(increase, `findById === 'next'`);
+
+    if (increase % 7 == 0) {
+      variables.pageNumber += 1;
+      increase = variables.pageNumber;
+      console.log(variables.pageNumber, `variables.pageNumber`);
+      console.log(increase, `first`);
+      elementsLi.map((el, i) => {
+        el.classList.contains('pagination-list__li--active') &&
+          el.classList.remove('pagination-list__li--active');
+        el.textContent = increase + i;
+        if (i === 0) {
+          el.classList.add('pagination-list__li--active');
+        }
+      });
       return;
     }
+    if (increase % 7 != 0) {
+      variables.pageNumber += 1;
+      increase = variables.pageNumber;
+      console.log(variables.pageNumber, `variables.pageNumber`);
+      console.log(increase, `second`);
+      elementsLi.map((el, i) => {
+        el.classList.contains('pagination-list__li--active') &&
+          el.classList.remove('pagination-list__li--active');
 
-    // if (increase > 0) {
-    //   const prevLiById = document.getElementById(increase - 1);
-    //   prevLiById.classList.remove('pagination-list__li--active');
-    // }
+        if (increase === 0 && i === increase) {
+          el.classList.add('pagination-list__li--active');
+          return;
+        }
 
-    newLiById.classList.add('pagination-list__li--active');
+        if (increase !== 0 && increase % 7 === i + 1) {
+          el.classList.add('pagination-list__li--active');
+          return;
+        }
 
-    if (variables.total === variables.pageNumber) return;
-    variables.pageNumber += 1;
+        if (increase !== 0 && increase % 7 == 0 && i === 6) {
+          el.classList.add('pagination-list__li--active');
+          return;
+        }
+      });
+    }
+
     refsNavigation.buttonPrev.classList.remove('hidden');
   } else if (findById === 'prev') {
     variables.pageNumber -= 1;
