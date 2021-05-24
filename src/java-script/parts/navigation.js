@@ -14,9 +14,8 @@ refsNavigation.filmDetailPageSection.classList.add('hidden');
 refsNavigation.filmLibraryPageSection.classList.add('hidden');
 
 function activeHomePage(e) {
-  const target = e.explicitOriginalTarget.id
-    ? e.explicitOriginalTarget.id
-    : null;
+  let target = e.type === 'DOMContentLoaded' ? null : e.target.id;
+
   if (target === 'logo') {
     refsNavigation.libraryDom.classList.add('navigation-link--active');
     refsNavigation.libraryDom.classList.remove('navigation-link--checked');
@@ -56,7 +55,7 @@ function activeHomePage(e) {
   );
 }
 function activeLibraryPage(e) {
-  const target = e.explicitOriginalTarget.id;
+  const target = e.target.id;
   if (target === 'library') {
     refsNavigation.homeDom.classList.remove('navigation-link--checked');
     refsNavigation.homeDom.classList.add('navigation-link--active');
