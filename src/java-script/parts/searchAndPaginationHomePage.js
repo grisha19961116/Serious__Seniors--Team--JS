@@ -42,9 +42,9 @@ async function searchFilms(e) {
 refsNavigation.searchFormDom.addEventListener('submit', searchFilms);
 
 export function paginationNavigation(e) {
-  const findById = e.originalTarget.id;
+  const findById = e.target.id;
   const findByIdNum = Number(findById);
-  const currentPage = Number(e.originalTarget.textContent);
+  const currentPage = Number(e.target.textContent);
   const elementsLi = Object.values(
     document.querySelectorAll('.pagination-list__li'),
   );
