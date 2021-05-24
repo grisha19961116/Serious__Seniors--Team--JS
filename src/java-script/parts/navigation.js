@@ -14,7 +14,9 @@ refsNavigation.filmDetailPageSection.classList.add('hidden');
 refsNavigation.filmLibraryPageSection.classList.add('hidden');
 
 function activeHomePage(e) {
-  const target = e.explicitOriginalTarget.id;
+  const target = e.explicitOriginalTarget.id
+    ? e.explicitOriginalTarget.id
+    : null;
   if (target === 'logo') {
     refsNavigation.libraryDom.classList.add('navigation-link--active');
     refsNavigation.libraryDom.classList.remove('navigation-link--checked');
