@@ -4,14 +4,11 @@ import refsNavigation from '../refsNavigation.js';
 import variables from '../variables.js';
 import { fetchPopularMoviesList, createCardFunc } from './initialHomePages.js';
 
-function fetchFilms() {
-  if (variables.inputValue === '') {
-    console.log(
-      variables.inputValue,
-      `variables.inputValue error empty string`,
-    );
-    return;
-  }
+let increase = 0;
+
+async function fetchFilms(flag) {
+  if (variables.inputValue === '') return;
+
   apiService
     .getFullRequest(variables.inputValue, variables.pageNumber)
     .then(dataFromApi => {
@@ -22,37 +19,44 @@ function fetchFilms() {
         );
         variables.pageNumber = 1;
         fetchPopularMoviesList();
-      } else {
-        refsNavigation.homepageList.innerHTML = '';
-        variables.renderFilms = [...dataFromApi.results];
-        variables.total = dataFromApi.total_pages;
-        createCardFunc(variables.renderFilms, variables.total);
       }
+      variables.total = parseInt(dataFromApi.total_pages / 7) * 7;
+      variables.renderFilms = [...dataFromApi.results];
+      refsNavigation.homepageList.innerHTML = '';
+      createCardFunc(variables.renderFilms, flag);
     })
     .catch(apiError => console.error(apiError));
 }
 
-function searchFilms(event) {
-  event.preventDefault();
-  variables.inputValue = refsNavigation.inputFormDom.value.trim();
-  refsNavigation.searchFormDom.reset();
-  fetchFilms();
+async function searchFilms(e) {
+  e.preventDefault();
+  const value = e.target[0].value;
+  if (value === '') return;
+  increase = 0;
+  variables.pageNumber = 1;
+  variables.inputValue = value.trim();
+  fetchFilms(true);
+  refsNavigation.buttonPrev.classList.add('hidden');
 }
 
 refsNavigation.searchFormDom.addEventListener('submit', searchFilms);
 
-let increase = 0;
+export function paginationNavigation(e) {
+  const findById = e.originalTarget.id;
+  const findByIdNum = Number(findById);
+  const currentPage = Number(e.originalTarget.textContent);
+  const elementsLi = Object.values(
+    document.querySelectorAll('.pagination-list__li'),
+  );
 
-export function paginationNavigation(event) {
-  const findById = event.originalTarget.id;
-  let elementsLi = document.querySelectorAll('.pagination-list__li');
-  elementsLi = Object.values(elementsLi);
-
-  if (Number(findById) === 1) {
+  if (currentPage === 1) {
+    const li = document.getElementById(currentPage);
+    if (li.classList.contains('pagination-list__li--active')) return;
     elementsLi.map((el, i) => {
       el.classList.contains('pagination-list__li--active') &&
         el.classList.remove('pagination-list__li--active');
-      if (i + 1 === Number(findById)) {
+
+      if (i + 1 === currentPage) {
         el.classList.add('pagination-list__li--active');
       }
     });
@@ -61,45 +65,58 @@ export function paginationNavigation(event) {
     variables.pageNumber = 1;
   }
 
-  if (Number(findById) > 1) {
-    if (increase <= 7) {
-      increase = Number(findById);
-    }
-    if (increase > 7) {
-      increase = increase + 1;
-    }
-
-    variables.pageNumber = increase;
-
-    console.log(
-      variables.pageNumber,
-      `variables.pageNumber Number(findById) > 1`,
-    );
-    console.log(increase, `Number(findById) > 1`);
+  if (currentPage !== 1 && findByIdNum === 1) {
+    refsNavigation.buttonNext.classList.contains('hidden') &&
+      refsNavigation.buttonNext.classList.remove('hidden');
+    const li = document.getElementById(findByIdNum);
+    if (li.classList.contains('pagination-list__li--active')) return;
+    variables.pageNumber = currentPage;
+    increase = variables.pageNumber;
 
     elementsLi.map((el, i) => {
       el.classList.contains('pagination-list__li--active') &&
         el.classList.remove('pagination-list__li--active');
+      if (i === 0) {
+        el.classList.add('pagination-list__li--active');
+      }
+    });
+  }
 
-      if (Number(findById) % 7 == 0) {
+  if (Number(findById) > 1) {
+    refsNavigation.buttonNext.classList.contains('hidden') &&
+      refsNavigation.buttonNext.classList.remove('hidden');
+    if (increase <= 7) {
+      increase = Number(findById);
+    }
+    if (increase > 7) {
+      increase = currentPage;
+    }
+    if (increase === variables.total) {
+      refsNavigation.buttonNext.classList.add('hidden');
+    }
+
+    variables.pageNumber = increase;
+    elementsLi.map((el, i) => {
+      el.classList.contains('pagination-list__li--active') &&
+        el.classList.remove('pagination-list__li--active');
+      if (i === 7) {
+        el.id = '';
+        el.textContent = `...${variables.total}`;
+        return;
+      }
+      if (findByIdNum % 7 == 0) {
         if (increase % 7 == 0 && i === 6) {
           el.classList.add('pagination-list__li--active');
           el.textContent = increase;
-          return;
         }
 
         if (increase % 7 != 0) {
           if (increase < 7) {
             el.textContent = i + 1;
           }
-          if (increase >= 7) {
-            console.log(increase, `errrr`);
-          }
-
-          if (Number(findById) === i + 1) {
+          if (findByIdNum === i + 1) {
             el.classList.add('pagination-list__li--active');
           }
-          return;
         }
 
         return;
@@ -111,10 +128,12 @@ export function paginationNavigation(event) {
           increase = Number(el.textContent);
           el.classList.add('pagination-list__li--active');
         }
-
         return;
       }
     });
+    if (variables.pageNumber === variables.total) {
+      refsNavigation.buttonNext.classList.add('hidden');
+    }
     refsNavigation.buttonPrev.classList.remove('hidden');
   }
 
@@ -123,20 +142,19 @@ export function paginationNavigation(event) {
       variables.pageNumber = 1;
       increase = variables.pageNumber;
     }
-    console.log(
-      variables.pageNumber,
-      `variables.pageNumber findById === 'next'`,
-    );
-    console.log(increase, `findById === 'next'`);
 
     if (increase % 7 == 0) {
       variables.pageNumber += 1;
       increase = variables.pageNumber;
-      console.log(variables.pageNumber, `variables.pageNumber`);
-      console.log(increase, `first`);
+
       elementsLi.map((el, i) => {
         el.classList.contains('pagination-list__li--active') &&
           el.classList.remove('pagination-list__li--active');
+        if (i === 7) {
+          el.id = '';
+          el.textContent = `...${variables.total}`;
+          return;
+        }
         el.textContent = increase + i;
         if (i === 0) {
           el.classList.add('pagination-list__li--active');
@@ -147,8 +165,7 @@ export function paginationNavigation(event) {
     if (increase % 7 != 0) {
       variables.pageNumber += 1;
       increase = variables.pageNumber;
-      console.log(variables.pageNumber, `variables.pageNumber`);
-      console.log(increase, `second`);
+
       elementsLi.map((el, i) => {
         el.classList.contains('pagination-list__li--active') &&
           el.classList.remove('pagination-list__li--active');
@@ -168,11 +185,47 @@ export function paginationNavigation(event) {
           return;
         }
       });
+      if (variables.pageNumber === variables.total) {
+        refsNavigation.buttonNext.classList.add('hidden');
+      }
     }
 
     refsNavigation.buttonPrev.classList.remove('hidden');
   } else if (findById === 'prev') {
     variables.pageNumber -= 1;
+    increase = variables.pageNumber;
+    refsNavigation.buttonNext.classList.contains('hidden') &&
+      refsNavigation.buttonNext.classList.remove('hidden');
+
+    elementsLi.map((el, i) => {
+      el.classList.contains('pagination-list__li--active') &&
+        el.classList.remove('pagination-list__li--active');
+      if (i === 7) {
+        el.id = '';
+        el.textContent = `...${variables.total}`;
+        return;
+      }
+      if (increase < 7) {
+        if (i + 1 === increase) {
+          el.classList.add('pagination-list__li--active');
+        }
+        el.textContent = i + 1;
+      }
+      if (increase >= 7) {
+        if (increase % 7 != 0) {
+          if (i + 1 === increase % 7) {
+            el.classList.add('pagination-list__li--active');
+          }
+          el.textContent = parseInt(increase / 7) * 7 + i + 1;
+        }
+        if (increase % 7 == 0) {
+          if (i === 6) {
+            el.classList.add('pagination-list__li--active');
+          }
+          el.textContent = increase - 6 + i;
+        }
+      }
+    });
   }
   if (variables.pageNumber <= 1) {
     refsNavigation.buttonPrev.classList.add('hidden');

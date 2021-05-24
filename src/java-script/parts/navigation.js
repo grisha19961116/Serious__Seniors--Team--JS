@@ -1,6 +1,7 @@
 export { activeHomePage, activeLibraryPage, activeDetailsPage };
 import refsNavigation from '../refsNavigation.js';
 import { paginationNavigation } from './searchAndPaginationHomePage.js';
+import { fetchPopularMoviesList } from './initialHomePages.js';
 import variables from '../variables.js';
 import { drawQueueFilmList } from './libraryPage.js';
 import { drawWatchedFilmList } from './libraryPage.js';
@@ -12,7 +13,23 @@ import {
 refsNavigation.filmDetailPageSection.classList.add('hidden');
 refsNavigation.filmLibraryPageSection.classList.add('hidden');
 
-function activeHomePage() {
+function activeHomePage(e) {
+  const target = e.explicitOriginalTarget.id;
+  if (target === 'logo') {
+    refsNavigation.libraryDom.classList.add('navigation-link--active');
+    refsNavigation.libraryDom.classList.remove('navigation-link--checked');
+    refsNavigation.homeDom.classList.add('navigation-link--active');
+    refsNavigation.homeDom.classList.remove('navigation-link--checked');
+    refsNavigation.searchFormDom.reset();
+    fetchPopularMoviesList();
+  }
+  if (target === 'home') {
+    refsNavigation.libraryDom.classList.remove('navigation-link--checked');
+    refsNavigation.libraryDom.classList.add('navigation-link--active');
+    refsNavigation.homeDom.classList.remove('navigation-link--active');
+    refsNavigation.homeDom.classList.add('navigation-link--checked');
+  }
+
   refsNavigation.filmDetailPageSection.classList.add('hidden');
   refsNavigation.filmLibraryPageSection.classList.add('hidden');
   refsNavigation.homePageSection.classList.remove('hidden');
@@ -36,7 +53,14 @@ function activeHomePage() {
     toggleToQueue,
   );
 }
-function activeLibraryPage() {
+function activeLibraryPage(e) {
+  const target = e.explicitOriginalTarget.id;
+  if (target === 'library') {
+    refsNavigation.homeDom.classList.remove('navigation-link--checked');
+    refsNavigation.homeDom.classList.add('navigation-link--active');
+    refsNavigation.libraryDom.classList.remove('navigation-link--active');
+    refsNavigation.libraryDom.classList.add('navigation-link--checked');
+  }
   refsNavigation.filmDetailPageSection.classList.add('hidden');
   refsNavigation.homePageSection.classList.add('hidden');
   refsNavigation.filmLibraryPageSection.classList.remove('hidden');
@@ -96,6 +120,5 @@ function activeDetailsPage(movieSelectedById, checkFlag) {
 refsNavigation.homeDom.addEventListener('click', activeHomePage);
 refsNavigation.logoDom.addEventListener('click', activeHomePage);
 refsNavigation.libraryDom.addEventListener('click', activeLibraryPage);
-variables.total && console.log(`is`);
 
 document.addEventListener('DOMContentLoaded', activeHomePage);

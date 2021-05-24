@@ -6,18 +6,46 @@ import variables from '../variables.js';
 
 let checkRender = false;
 
-function createCardFunc(renderFilms, total) {
+function createCardFunc(renderFilms, flag = false) {
+  if (variables.total < 7 || variables.total === 0) {
+    refsNavigation.searchFormDom.reset();
+    fetchPopularMoviesList();
+    return;
+  }
   const ulPagination = document.querySelector('.pagination-list');
+  if (flag) {
+    const elementsLi = Object.values(
+      document.querySelectorAll('.pagination-list__li'),
+    );
+    elementsLi.map((el, i) => {
+      el.classList.contains('pagination-list__li--active') &&
+        el.classList.remove('pagination-list__li--active');
+      el.textContent = i + 1;
+      if (i === 0) {
+        el.classList.add('pagination-list__li--active');
+      }
+      if (i === 7) {
+        el.id = '';
+        el.classList.add('pagination-list__li--total');
+        el.textContent = `...${variables.total}`;
+      }
+    });
+  }
 
   if (!checkRender) {
     checkRender = true;
-    for (let i = 1; i < 8; i += 1) {
+    for (let i = 1; i < 9; i += 1) {
       const liPagination = document.createElement('li');
       liPagination.id = i;
       liPagination.textContent = i;
       liPagination.classList.add('pagination-list__li');
       if (i === 1) {
         liPagination.classList.add('pagination-list__li--active');
+      }
+      if (i === 8) {
+        liPagination.id = '';
+        liPagination.classList.add('pagination-list__li--total');
+        liPagination.textContent = `...${variables.total}`;
       }
       ulPagination.append(liPagination);
     }
@@ -53,8 +81,8 @@ function fetchPopularMoviesList() {
         refsNavigation.homepageList.innerHTML = '';
       }
       variables.renderFilms = [...data.results];
-      variables.total = data.total_pages;
-      createCardFunc(variables.renderFilms, variables.total);
+      variables.total = parseInt(data.total_pages / 7) * 7;
+      createCardFunc(variables.renderFilms);
     });
 }
 

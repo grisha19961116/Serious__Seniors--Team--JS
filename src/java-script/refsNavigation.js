@@ -1,5 +1,6 @@
 export default {
   homeDom: document.querySelector('.home-link'),
+  logoDom: document.querySelector('.logo__link'),
   libraryDom: document.querySelector('.library-link'),
   filmLibraryPageSection: document.querySelector('.myFilmLibraryPage__section'),
   homePageSection: document.querySelector('.homePage'),
@@ -14,6 +15,5 @@ export default {
   searchFormDom: document.querySelector('.search__form'),
   inputFormDom: document.querySelector('.search__film'),
   searchFormErrorDom: document.querySelector('.search-form__error'),
-  logoDom: document.querySelector('.navigation__left-side'),
   homePageBtn: document.querySelector('.homePage__btns'),
 };
