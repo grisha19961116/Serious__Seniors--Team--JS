@@ -1,10 +1,12 @@
 import detailsPage from '../templates/details-page.hbs';
+import refsNavigation from '../refsNavigation.js';
 import variables from '../variables.js';
 import 'material-design-icons/iconfont/material-icons.css';
 
+const buttonQueue = refsNavigation.buttonAddFilmToQueue;
+const buttonWatched = refsNavigation.buttonAddFilmToWatched;
+
 function monitorButtonStatusText() {
-  const buttonQueue = document.querySelector('.js-btn-queue');
-  const buttonWatched = document.querySelector('.js-btn-watched');
   let localStorageFilmsQueue = localStorage.getItem('filmsQueue');
   localStorageFilmsQueue === null
     ? (buttonQueue.textContent = 'Add to queue')

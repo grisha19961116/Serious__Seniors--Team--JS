@@ -69,7 +69,7 @@ function createCardFunc(renderFilms, flag = false) {
   });
 }
 
-function fetchPopularMoviesList() {
+function fetchPopularMoviesList(flag) {
   fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=f2c0383f553427336b1984c7194d50ac&language=en-US&page=${variables.pageNumber}`,
   )
@@ -82,7 +82,7 @@ function fetchPopularMoviesList() {
       }
       variables.renderFilms = [...data.results];
       variables.total = parseInt(data.total_pages / 7) * 7;
-      createCardFunc(variables.renderFilms);
+      createCardFunc(variables.renderFilms, flag);
     });
 }
 

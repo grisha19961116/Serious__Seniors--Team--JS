@@ -1,41 +1,34 @@
-import { Number, Object } from 'core-js';
 import apiService from '../apiService.js';
 import refsNavigation from '../refsNavigation.js';
 import variables from '../variables.js';
 import { fetchPopularMoviesList, createCardFunc } from './initialHomePages.js';
-
 let increase = 0;
 
-async function fetchFilms(flag) {
-  if (variables.inputValue === '') return;
-
+function fetchFilms(flag, emptyInput) {
+  if (emptyInput || variables.inputValue === '')
+    return fetchPopularMoviesList(true);
   apiService
     .getFullRequest(variables.inputValue, variables.pageNumber)
     .then(dataFromApi => {
-      if (dataFromApi.length === 0) {
-        refsNavigation.searchFormErrorDom.replace(
-          'search-form__error--hidden',
-          'search-form__error--visibale',
-        );
-        variables.pageNumber = 1;
-        fetchPopularMoviesList();
+      if (dataFromApi.total_pages > 7) {
+        console.log(dataFromApi);
+        variables.total = parseInt(dataFromApi.total_pages / 7) * 7;
+        variables.renderFilms = [...dataFromApi.results];
+        refsNavigation.homepageList.innerHTML = '';
+        createCardFunc(variables.renderFilms, flag);
+        return;
       }
-      variables.total = parseInt(dataFromApi.total_pages / 7) * 7;
-      variables.renderFilms = [...dataFromApi.results];
-      refsNavigation.homepageList.innerHTML = '';
-      createCardFunc(variables.renderFilms, flag);
     })
     .catch(apiError => console.error(apiError));
 }
 
-async function searchFilms(e) {
+function searchFilms(e) {
   e.preventDefault();
   const value = e.target[0].value;
-  if (value === '') return;
   increase = 0;
   variables.pageNumber = 1;
   variables.inputValue = value.trim();
-  fetchFilms(true);
+  fetchFilms(true, value === '' && true);
   refsNavigation.buttonPrev.classList.add('hidden');
 }
 
@@ -60,7 +53,6 @@ export function paginationNavigation(e) {
         el.classList.add('pagination-list__li--active');
       }
     });
-
     refsNavigation.buttonPrev.classList.add('hidden');
     variables.pageNumber = 1;
   }
@@ -72,7 +64,6 @@ export function paginationNavigation(e) {
     if (li.classList.contains('pagination-list__li--active')) return;
     variables.pageNumber = currentPage;
     increase = variables.pageNumber;
-
     elementsLi.map((el, i) => {
       el.classList.contains('pagination-list__li--active') &&
         el.classList.remove('pagination-list__li--active');
@@ -94,7 +85,6 @@ export function paginationNavigation(e) {
     if (increase === variables.total) {
       refsNavigation.buttonNext.classList.add('hidden');
     }
-
     variables.pageNumber = increase;
     elementsLi.map((el, i) => {
       el.classList.contains('pagination-list__li--active') &&
@@ -118,11 +108,11 @@ export function paginationNavigation(e) {
             el.classList.add('pagination-list__li--active');
           }
         }
-
         return;
       }
 
       increase === 0 && (el.textContent = i + 1);
+
       if (increase % 7 != 0) {
         if (Number(findById) === i + 1) {
           increase = Number(el.textContent);

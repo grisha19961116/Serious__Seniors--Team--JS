@@ -26,7 +26,8 @@ function activeHomePage(e) {
     refsNavigation.homeDom.classList.remove('navigation-link--active');
     refsNavigation.homeDom.classList.add('navigation-link--checked');
     refsNavigation.searchFormDom.reset();
-    fetchPopularMoviesList();
+    variables.pageNumber = 1;
+    fetchPopularMoviesList(true);
   }
   if (target === 'home') {
     refsNavigation.libraryDom.classList.remove('navigation-link--checked');

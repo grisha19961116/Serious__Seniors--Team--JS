@@ -14,6 +14,5 @@ export default {
   homepageList: document.querySelector('.js-list-render'),
   searchFormDom: document.querySelector('.search__form'),
   inputFormDom: document.querySelector('.search__film'),
-  searchFormErrorDom: document.querySelector('.search-form__error'),
   homePageBtn: document.querySelector('.homePage__btns'),
 };
