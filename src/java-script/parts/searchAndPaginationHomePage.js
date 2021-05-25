@@ -217,6 +217,7 @@ export function paginationNavigation(e) {
       }
     });
   }
+  refsNavigation.pageNumber.textContent = variables.pageNumber;
   if (variables.pageNumber <= 1) {
     refsNavigation.buttonPrev.classList.add('hidden');
   }

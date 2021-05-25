@@ -90,16 +90,34 @@
   font-family: 'DroidSans';
   color: rgb(173, 176, 179);
   cursor: pointer;
+  position: relative;
+}
+
+.pagination-list__li:hover {
+  color: rgb(44, 122, 201);
+  transition: 0.5s;
 }
 .pagination-list__li--active {
-  color: rgb(23, 23, 24);
+  color: rgb(23, 132, 241);
+  transition: 0.3s;
 }
 
 .pagination-list__li--total {
   cursor: none;
   color: rgb(136, 136, 136);
 }
-
+.showPage {
+  position: absolute;
+  left: 46%;
+  top: 60%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  color: rgb(32, 31, 31);
+  background: rgb(107, 105, 105);
+  font-size: 30px;
+}
 .homePage__btns {
   display: block;
   height: 80px;
@@ -111,68 +129,167 @@
   left: 10%;
 }
 
-.homePage__btnsNext {
-  position: absolute;
-  right: 10%;
-}
-
 .homePage__btnsPrev,
 .homePage__btnsNext {
-  width: 95px;
-  height: 48px;
-  cursor: pointer;
-}
-.homePage__btnsPage {
-  width: 48px;
-  height: 48px;
-}
-
-.homePage__btnsPrev,
-.homePage__btnsPage,
-.homePage__btnsNext {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgb(221, 221, 221);
-  border-radius: 5px;
-  box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, 0.004);
   font-size: 22px;
   font-family: 'DroidSans';
-  color: rgb(85, 98, 112);
   font-weight: bold;
   line-height: 1.143;
+  width: 95px;
+  height: 48px;
+  border: none;
   outline: none;
+  color: #fff;
+  background: #111;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 0;
+  cursor: pointer;
+  position: relative;
+}
+.homePage__btnsNext {
+  right: -46%;
+}
+
+.homePage__btnsPrev {
+  left: 20%;
+}
+
+.homePage__btnsNext:before {
+  content: '';
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.homePage__btnsPrev:before {
+  content: '';
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.homePage__btnsNext:active {
+  color: #000;
+}
+.homePage__btnsPrev:active {
+  color: #000;
+}
+
+.homePage__btnsNext:active:after {
+  background: transparent;
+}
+.homePage__btnsPrev:active:after {
+  background: transparent;
+}
+
+.homePage__btnsNext:hover:before {
+  opacity: 1;
+}
+.homePage__btnsPrev:hover:before {
+  opacity: 1;
+}
+
+.homePage__btnsNext:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(194, 188, 188);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+.homePage__btnsPrev:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(194, 188, 188);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 @media (min-width: 767px) {
   .homePage {
     min-height: 84.5vh;
   }
+  .showPage {
+    display: none;
+  }
   .pagination-list {
     top: 10px;
-    width: 16%;
-    left: 42%;
+    width: 70%;
+    left: 15%;
   }
   .homePage__btnsPrev {
-    left: 20%;
+    left: 5%;
   }
 
   .homePage__btnsNext {
     position: absolute;
-    right: 20%;
+    right: 5%;
   }
 }
 
 @media (min-width: 1920px) {
-  .homePage__btnsPrev {
-    position: absolute;
-    left: 35%;
-  }
-
-  .homePage__btnsNext {
-    position: absolute;
-    right: 35%;
-  }
-
   .homepage-list__poster-img {
     width: 100%;
     height: 250px;
