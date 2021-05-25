@@ -107,9 +107,8 @@
   color: rgb(136, 136, 136);
 }
 .showPage {
-  position: absolute;
-  left: 46%;
-  top: 60%;
+  display: block;
+  margin: 0 auto;
   width: 40px;
   height: 40px;
   text-align: center;
@@ -119,14 +118,11 @@
   font-size: 30px;
 }
 .homePage__btns {
-  display: block;
+  display: flex;
+  justify-content: space-around;
   height: 80px;
+  width: 100%;
   position: relative;
-}
-
-.homePage__btnsPrev {
-  position: absolute;
-  left: 10%;
 }
 
 .homePage__btnsPrev,
@@ -146,13 +142,6 @@
   z-index: 0;
   cursor: pointer;
   position: relative;
-}
-.homePage__btnsNext {
-  right: -46%;
-}
-
-.homePage__btnsPrev {
-  left: 20%;
 }
 
 .homePage__btnsNext:before {
@@ -280,6 +269,7 @@
     left: 15%;
   }
   .homePage__btnsPrev {
+    position: absolute;
     left: 5%;
   }
 
