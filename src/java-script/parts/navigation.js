@@ -14,13 +14,17 @@ refsNavigation.filmDetailPageSection.classList.add('hidden');
 refsNavigation.filmLibraryPageSection.classList.add('hidden');
 
 function activeHomePage(e) {
-  let target = e.type === 'DOMContentLoaded' ? null : e.target.id;
-
+  let target = e.type === 'DOMContentLoaded' ? 'DOMContentLoaded' : e.target.id;
+  if (target === 'DOMContentLoaded') {
+    refsNavigation.homeDom.classList.remove('navigation-link--active');
+    refsNavigation.homeDom.classList.add('navigation-link--checked');
+    refsNavigation.inputFormDom.value = '';
+  }
   if (target === 'logo') {
     refsNavigation.libraryDom.classList.add('navigation-link--active');
     refsNavigation.libraryDom.classList.remove('navigation-link--checked');
-    refsNavigation.homeDom.classList.add('navigation-link--active');
-    refsNavigation.homeDom.classList.remove('navigation-link--checked');
+    refsNavigation.homeDom.classList.remove('navigation-link--active');
+    refsNavigation.homeDom.classList.add('navigation-link--checked');
     refsNavigation.searchFormDom.reset();
     fetchPopularMoviesList();
   }

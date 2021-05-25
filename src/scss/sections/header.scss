@@ -23,17 +23,14 @@ a {
 }
 
 .navigation-link--active:hover {
-  border-bottom: 3px solid rgba(55, 44, 72, 1);
+  border-bottom: 3px solid rgb(8, 167, 3);
   margin-bottom: -18px;
-  color: rgba(55, 44, 72, 1);
+  color: rgb(8, 167, 3);
   z-index: 100;
 }
 
 .navigation-link--checked {
-  border-bottom: 3px solid red;
-  margin-bottom: -18px;
-  color: red;
-  z-index: 100;
+  color: rgb(8, 167, 3);
 }
 
 .navigation__left-side {
