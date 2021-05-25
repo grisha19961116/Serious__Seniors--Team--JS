@@ -6,13 +6,7 @@ import 'material-design-icons/iconfont/material-icons.css';
 const buttonQueue = refsNavigation.buttonAddFilmToQueue;
 const buttonWatched = refsNavigation.buttonAddFilmToWatched;
 
-function monitorButtonStatusText() {
-  // .btn__film-details--delete {
-  //   background-color: red;
-  // }
-  // .btn__film-details--add {
-  //   background-color: rgb(30, 255, 0);
-  // }
+function monitorButtonStatusTextAndStyles() {
   let localStorageFilmsQueue = localStorage.getItem('filmsQueue');
   localStorageFilmsQueue === null
     ? (buttonQueue.textContent = 'Add to queue')
@@ -29,7 +23,6 @@ function monitorButtonStatusText() {
       )
     ? (buttonWatched.textContent = 'Delete from watched')
     : (buttonWatched.textContent = 'Add to watched');
-  console.log(buttonWatched.textContent);
   if (buttonWatched.textContent === 'Add to watched') {
     buttonWatched.classList.add('btn__film-details--add');
     buttonWatched.classList.remove('btn__film-details--delete');
@@ -59,7 +52,7 @@ function toggleToQueue() {
     filmQueueLocalStorage.push(variables.selectFilm);
   }
   localStorage.setItem('filmsQueue', JSON.stringify(filmQueueLocalStorage));
-  monitorButtonStatusText();
+  monitorButtonStatusTextAndStyles();
 }
 function toggleToWatched() {
   let filmsWatchedLocalStorage =
@@ -75,13 +68,44 @@ function toggleToWatched() {
     'filmsWatched',
     JSON.stringify(filmsWatchedLocalStorage),
   );
-  monitorButtonStatusText();
+  monitorButtonStatusTextAndStyles();
 }
 
-function showDetails(selectFilm) {
-  const hbsLink = document.querySelector('.film-details-page-hbs');
-  const murkup = detailsPage(selectFilm);
-  hbsLink.innerHTML = murkup;
-  monitorButtonStatusText();
+function showDetails(selectedFilm) {
+  const {
+    id,
+    release_date,
+    backdrop_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genres,
+    overview,
+  } = selectedFilm;
+  fetch(
+    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=f2c0383f553427336b1984c7194d50ac&language=en-US`,
+  )
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      const hbsLink = document.querySelector('.film-details-page-hbs');
+      const murkup = detailsPage({
+        release_date,
+        title,
+        backdrop_path,
+        vote_average,
+        vote_count,
+        key: data.results[0].key,
+        popularity,
+        original_title,
+        genres,
+        overview,
+      });
+      hbsLink.innerHTML = murkup;
+    });
+  monitorButtonStatusTextAndStyles();
 }
 export { showDetails, toggleToQueue, toggleToWatched };
