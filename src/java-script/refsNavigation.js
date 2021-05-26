@@ -1,6 +1,6 @@
 export default {
   homeDom: document.querySelector('.home-link'),
-  logoDom: document.querySelector('.logo__link'),
+  logoDom: document.querySelector('.logo__wrapper'),
   libraryDom: document.querySelector('.library-link'),
   filmLibraryPageSection: document.querySelector('.myFilmLibraryPage__section'),
   homePageSection: document.querySelector('.homePage'),
